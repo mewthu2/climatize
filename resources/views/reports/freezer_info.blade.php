@@ -50,135 +50,149 @@
   </div>
 </x-app-layout>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-
 <script>
-  $(document).ready(function() {
-    $('.interval-button').click(function() {
-      var intervalo = $(this).val();
-      var etiquetaIdentFreezer = $('#select_freezer').val();
+  document.addEventListener('DOMContentLoaded', function() {
+    var intervalButtons = document.querySelectorAll('.interval-button');
 
-      $('#loading_status').toggle('');
-      $('#chart').toggle('');
+    intervalButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var intervalo = this.value;
+            var etiquetaIdentFreezer = document.getElementById('select_freezer').value;
 
-      $.ajax({
-        url: '/reports/freezer_info',
-        type: 'GET',
-        data: {
-          etiqueta_ident_freezer: etiquetaIdentFreezer,
-          intervalo: intervalo
-        },
-        success: function(response) {
-          $('#loading_status').toggle('');
-          $('#chart').toggle('');
-          renderChart(response);
-        },
-        error: function(xhr, status, error) {
-          $('#loading_status').toggle('');
-          console.error(error);
-        }
-      });
+            toggleElementVisibility('loading_status');
+            toggleElementVisibility('chart');
+
+            axios.get('/reports/freezer_info', {
+                params: {
+                    etiqueta_ident_freezer: etiquetaIdentFreezer,
+                    intervalo: intervalo
+                },
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(function(response) {
+                toggleElementVisibility('loading_status');
+                toggleElementVisibility('chart');
+                console.log(response.data);
+                renderChart(response.data);
+            })
+            .catch(function(error) {
+                toggleElementVisibility('loading_status');
+                console.error(error);
+            });
+        });
     });
   });
 
   function renderChart(data) {
-  var series = [];
+      var series = [];
 
-  series.push({
-    name: "Max",
-    data: data.map(function(item) {
-      return { x: item.dt_leitura, y: parseFloat(item.max.toFixed(2)) };
-    })
-  });
+      series.push({
+          name: "Max",
+          data: data.map(function(item) {
+              return { x: new Date(item.dt_leitura), y: parseFloat(item.max.toFixed(2)) };
+          })
+      });
 
-  series.push({
-    name: "Temp",
-    data: data.map(function(item) {
-      return { x: item.dt_leitura, y: parseFloat(item.temperatura.toFixed(2)) };
-    })
-  });
+      series.push({
+          name: "Temp",
+          data: data.map(function(item) {
+              return { x: new Date(item.dt_leitura), y: parseFloat(item.temperatura.toFixed(2)) };
+          })
+      });
 
-  series.push({
-    name: "Min",
-    data: data.map(function(item) {
-      return { x: item.dt_leitura, y: parseFloat(item.min.toFixed(2)) };
-    })
-  });
+      series.push({
+          name: "Min",
+          data: data.map(function(item) {
+              return { x: new Date(item.dt_leitura), y: parseFloat(item.min.toFixed(2)) };
+          })
+      });
 
-  series.push({
-    name: "SetPoint",
-    data: data.map(function(item) {
-      return { x: item.dt_leitura, y: parseFloat(item.setpoint.toFixed(2)) };
-    })
-  });
+      series.push({
+          name: "SetPoint",
+          data: data.map(function(item) {
+              return { x: new Date(item.dt_leitura), y: parseFloat(item.setpoint.toFixed(2)) };
+          })
+      });
 
-  var options = {
-    series: series,
-    chart: {
-      type: 'area',
-      stacked: false,
-      width: window.innerWidth > 768 ? 1200 : 300,
-      height: window.innerWidth > 768 ? 400 : 300,
-      zoom: {
-        type: 'x',
-        enabled: true,
-        autoScaleYaxis: true
-      },
-      toolbar: {
-        autoSelected: 'zoom'
+      var options = {
+          series: series,
+          chart: {
+              type: 'area',
+              stacked: false,
+              width: window.innerWidth > 768 ? 1200 : 300,
+              height: window.innerWidth > 768 ? 400 : 300,
+              zoom: {
+                  type: 'x',
+                  enabled: true,
+                  autoScaleYaxis: true
+              },
+              toolbar: {
+                  autoSelected: 'zoom'
+              }
+          },
+          dataLabels: {
+              enabled: false
+          },
+          markers: {
+              size: 0,
+          },
+          title: {
+              text: 'Média de temperatura do sensor',
+              align: 'left'
+          },
+          fill: {
+              type: 'gradient',
+              gradient: {
+                  shadeIntensity: 1,
+                  inverseColors: false,
+                  opacityFrom: 0.5,
+                  opacityTo: 0,
+                  stops: [0, 90, 100]
+              },
+          },
+          yaxis: {
+              title: {
+                  text: 'Temperatura'
+              },
+          },
+          xaxis: {
+              type: 'datetime',
+              labels: {
+                  formatter: function(val) {
+                      return new Date(val).toLocaleTimeString('pt-BR', {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          hour12: false
+                      });
+                  }
+              }
+          },
+          tooltip: {
+              shared: false,
+          },
+          colors: ["#FF0000", "#0000FF", "#FF0000", "#000000"],
+          legend: {
+              position: 'bottom'
+          },
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+  }
+
+  function toggleElementVisibility(id) {
+      var element = document.getElementById(id);
+      if (element.style.display === 'none') {
+          element.style.display = 'block';
+      } else {
+          element.style.display = 'none';
       }
-    },
-    dataLabels: {
-      enabled: false
-    },
-    markers: {
-      size: 0,
-    },
-    title: {
-      text: 'Média de temperatura do sensor',
-      align: 'left'
-    },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shadeIntensity: 1,
-        inverseColors: false,
-        opacityFrom: 0.5,
-        opacityTo: 0,
-        stops: [0, 90, 100]
-      },
-    },
-    yaxis: {
-      title: {
-        text: 'Temperatura'
-      },
-    },
-    xaxis: {
-      type: 'datetime',
-      labels: {
-        formatter: function(val) {
-          return new Date(val).toLocaleTimeString('pt-BR', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-          });
-        }
-      }
-    },
-    tooltip: {
-      shared: false,
-    },
-    colors: ["#FF0000", "#0000FF", "#FF0000", "#000000"],
-    legend: {
-      position: 'bottom'
-    },
-  };
-
-  var chart = new ApexCharts(document.querySelector("#chart"), options);
-  chart.render();
-}
+  }
 
 </script>
+
 
 
 

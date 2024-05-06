@@ -9,7 +9,7 @@
                         <div class="container flex ml-1">
                             <x-logo-climatize :width="50" :height="50"></x-logo-climatize>
                             <span class="text-white mt-2 text-x animate-pulse">4 Climatize</span>
-                        </div>            
+                        </div>  
                     </a>
                 </div>
 
