@@ -3,7 +3,6 @@
 if [ -f "composer.json" ]; then
     composer install --no-interaction --no-ansi --no-progress --optimize-autoloader
 
-    # Executar scripts de pós-instalação do Composer
     composer run-script post-autoload-dump --no-interaction --no-ansi --no-progress
     composer run-script post-update-cmd --no-interaction --no-ansi --no-progress
     composer run-script post-root-package-install --no-interaction --no-ansi --no-progress
