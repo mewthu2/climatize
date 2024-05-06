@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Schema::disableForeignKeyConstraints();
-        URL::forceScheme('http');
+        URL::forceScheme('https');
     }
 }
