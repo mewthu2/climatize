@@ -21,8 +21,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('/freezers')->group(function () {
-        Route::get('/index', [CadFreezersController::class, 'index'])->name('freezers');
-    });
+    Route::get('/index', [CadFreezersController::class, 'index'])->name('freezers');
+    Route::get('/create', [CadFreezersController::class, 'create'])->name('freezers.create');
+    Route::post('/store', [CadFreezersController::class, 'store'])->name('freezers.store');
+});
 
     Route::prefix('/contatos')->group(function () {
         Route::get('/index', [ContatosController::class, 'index'])->name('contatos');

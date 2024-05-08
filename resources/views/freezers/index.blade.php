@@ -2,9 +2,12 @@
     <x-slot name="header">
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
             <i class="fas fa-users"></i> {{ __('Listagem de Freezers') }}
+            <x-primary-button class="ml-4" href="{{ route('freezers.create') }}">
+                {{ __('Novo Freezer') }}
+            </x-primary-button>
         </h5>
     </x-slot>
-  
+
     <section class="container mx-auto p-2 font-mono" style="overflow-y: scroll;">
         <div class="w-full mb-8 rounded-lg shadow-lg" style="overflow-y: scroll;">
             <div class="w-full" style="overflow-y: scroll;">
