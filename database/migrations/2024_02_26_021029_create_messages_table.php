@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_aparelho')->nullable();
+            // $table->unsignedBigInteger('id_aparelho')->nullable();
             $table->unsignedBigInteger('id_alarme')->nullable();
             $table->unsignedBigInteger('id_responsavel')->nullable();
             $table->string('telefone', 25)->nullable();
@@ -29,9 +29,9 @@ class CreateMessagesTable extends Migration
             $table->unsignedInteger('ativo')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_aparelho')->references('id')->on('aparelhos')->onDelete('cascade');
-            $table->foreign('id_alarme')->references('id')->on('alarmes')->onDelete('cascade');
-            $table->foreign('id_responsavel')->references('id')->on('responsaveis')->onDelete('cascade');
+            // $table->foreign('id_aparelho')->references('id')->on('aparelhos')->onDelete('cascade');
+            $table->foreign('id_alarme')->references('id')->on('cad_alarmes')->onDelete('cascade');
+            $table->foreign('id_responsavel')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

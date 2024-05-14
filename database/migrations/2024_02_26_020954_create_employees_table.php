@@ -20,9 +20,9 @@ class CreateEmployeesTable extends Migration
             $table->string('role')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->unsignedBigInteger('sector_id')->nullable();
+            // $table->unsignedBigInteger('sector_id')->nullable();
 
-            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
+            // $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
         });
     }
 

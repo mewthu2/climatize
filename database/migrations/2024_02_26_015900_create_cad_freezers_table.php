@@ -27,10 +27,8 @@ class CreateCadFreezersTable extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('cad_cliente_id')->nullable();
-            $table->unsignedBigInteger('cad_responsave_id')->nullable();
 
             $table->foreign('cad_cliente_id')->references('id')->on('cad_clientes_old')->onDelete('cascade');
-            $table->foreign('cad_responsave_id')->references('id')->on('cad_responsaves')->onDelete('cascade');
         });
     }
 

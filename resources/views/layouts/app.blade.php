@@ -24,7 +24,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="shadow" style="background: #36384f;">
+                <header class="shadow" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #0b1134 20px), repeating-linear-gradient(rgb(25 33 66), #131431);">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

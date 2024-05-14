@@ -15,12 +15,12 @@ class CreateEmployeeSkillsTable extends Migration
     {
         Schema::create('employee_skills', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('employee_id')->unsigned();
-            $table->bigInteger('skill_id')->unsigned();
+            // $table->bigInteger('employee_id')->unsigned();
+            // $table->bigInteger('skill_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
+            // $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            // $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
         });
     }
 
