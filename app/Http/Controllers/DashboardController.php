@@ -9,16 +9,21 @@ use App\Models\PanelTemperatura;
 class DashboardController extends Controller
 {
     public function index()
-        {   
-            $cad_usuario = Usuario::where('login', auth()->user()->email)->first();
+    {   
+        $cad_usuario = Usuario::where('login', auth()->user()->email)->first();
+
+        $employees = collect();
+
+        if ($cad_usuario && $cad_usuario->cad_cliente_id) {
+
             $employees = PanelTemperatura::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->get();
 
             foreach ($employees as $employee) {
                 $employee->estaEmDegelo = Degelo::verificarEtiquetaEmDegelo($employee->etiqueta_ident);
             }
-
-            return view('dashboard/index')
-            ->with(compact('cad_usuario', 'employees'));
         }
+
+        return view('dashboard.index', compact('cad_usuario', 'employees'));
+    }
 
 }
