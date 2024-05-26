@@ -18,6 +18,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::prefix('/clients')->group(function () {
         Route::get('/index', [CadClientesController::class, 'index'])->name('clients');
+        Route::get('/create', [CadClientesController::class, 'create'])->name('clients.create');
+        Route::post('/store', [CadClientesController::class, 'store'])->name('clients.store');
     });
 
     Route::prefix('/freezers')->group(function () {

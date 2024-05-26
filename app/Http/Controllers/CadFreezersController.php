@@ -21,7 +21,6 @@ class CadFreezersController extends Controller
 
     public function store(Request $request)
     {
-        // Validação dos dados
         $validatedData = $request->validate([
             'id_equipamento' => 'required',
             'mac_sensor' => 'required',
@@ -31,16 +30,17 @@ class CadFreezersController extends Controller
             'setpoint' => 'required',
             'etiqueta_ident' => 'required',
             'limite_neg' => 'required',
-            'limite_pos' => 'required',
-            'cad_cliente_id' => 'required',
-            'cad_responsavel_id' => 'required',
+            'limite_pos' => 'required'
         ]);
 
-        // Criação do freezer
-        Freezer::create($validatedData);
-
-        // Redirecionamento após a criação
-        return redirect()->route('freezers.index')
-                         ->with('success', 'Freezer criado com sucesso!');
+        try {
+            Freezer::create($validatedData);
+    
+            return redirect()->route('freezers')
+                             ->with('success', 'Freezer criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->route('freezers')
+                             ->with('error', 'Erro ao criar o freezer: ' . $e->getMessage());
+        }
     }
 }

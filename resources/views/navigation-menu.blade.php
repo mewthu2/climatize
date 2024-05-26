@@ -38,20 +38,12 @@
 
                             <div class="border-t border-gray-200"></div>
 
-                            <x-dropdown-link href="{{ route('clients') }}">
-                                {{ __('Equipamentos') }}
-                            </x-dropdown-link>
-
                             <x-dropdown-link href="{{ route('freezers') }}">
                                 {{ __('Freezers') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link href="{{ route('dashboard') }}">
-                                {{ __('Grupos de Acesso') }}
-                            </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('dashboard') }}">
-                                {{ __('Usuários') }}
+                            <x-dropdown-link href="{{ route('clients') }}">
+                                {{ __('Clientes') }}
                             </x-dropdown-link>
 
                             <x-dropdown-link href="{{ route('contatos') }}">
