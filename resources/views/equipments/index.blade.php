@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header" style="display:flex;">
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
-            <i class="fas fa-users"></i> {{ __('Listagem de Freezers') }}
-            <x-primary-button class="ml-4" href="{{ route('freezers.create') }}">
-                {{ __('Novo Freezer') }}
+            <i class="fas fa-users"></i> {{ __('Listagem de equipamentos') }}
+            <x-primary-button class="ml-4" href="{{ route('equipments.create') }}">
+                {{ __('Novo equipamento') }}
             </x-primary-button>
 
             @if(session()->has('success'))
@@ -44,28 +44,30 @@
                         <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                             <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
                             <th class="px-6 py-3 border border-gray-300">ID Equipamento</th>
-                            <th class="px-6 py-3 border border-gray-300">Mac Sensor</th>
-                            <th class="px-6 py-3 border border-gray-300">Nome Unidade</th>
-                            <th class="px-6 py-3 border border-gray-300">Referência</th>
-                            <th class="px-6 py-3 border border-gray-300">Detalhe</th>
-                            <th class="px-6 py-3 border border-gray-300">Setpoint</th>
-                            <th class="px-6 py-3 border border-gray-300">Etiqueta Ident</th>
-                            <th class="px-6 py-3 border border-gray-300">Limite Neg</th>
+                            <th class="px-6 py-3 border border-gray-300">Nome</th>
+                            <th class="px-6 py-3 border border-gray-300">Descrição</th>
+                            <th class="px-6 py-3 border border-gray-300">Endereço</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($freezers as $freezer)
-                        <tr>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300"><!-- Ações --></td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->id_equipamento }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->mac_sensor }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->nome_unidade }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->referencia }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->detalhe }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->setpoint }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->etiqueta_ident }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->limite_neg }}</td>
-                        </tr>
+                        @foreach ($equipments as $equipment)
+                            <tr>
+                                <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
+                                    <x-primary-button href="{{ route('equipments.edit', $equipment->id) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </x-primary-button>
+                                    <x-primary-button href="{{ route('equipments.destroy', $equipment->id) }}">
+                                        <i class="fas fa-times"></i>
+                                    </x-primary-button>                                    
+                                    <x-primary-button href="{{ route('equipments.create') }}">
+                                        <i class="fas fa-signal"></i>
+                                    </x-primary-button>
+                                </td>
+                                <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->id }}</td>
+                                <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->nome }}</td>
+                                <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->descricao }}</td>
+                                <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->endereco }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

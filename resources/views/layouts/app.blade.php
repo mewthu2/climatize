@@ -19,7 +19,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen" style="background: #36384f;">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -33,9 +33,9 @@
 
             <!-- Page Content -->
             
-            <main class="max-w-7xl mx-auto">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="bg-white border-b border-gray-200" style="min-height: 800px;">
+            <main class="mx-auto">
+                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="border-b border-gray-200" style="min-height: 800px; backgrond-color: rgb(36 38 43);">
                         {{ $slot }}
                     </div>
                 </div>

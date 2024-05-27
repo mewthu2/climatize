@@ -38,6 +38,10 @@
 
                             <div class="border-t border-gray-200"></div>
 
+                            <x-dropdown-link href="{{ route('equipments') }}">
+                                {{ __('Equipamentos') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link href="{{ route('freezers') }}">
                                 {{ __('Freezers') }}
                             </x-dropdown-link>
@@ -66,7 +70,7 @@
 
                             <div class="border-t border-gray-200"></div>
 
-                            <x-dropdown-link href="{{ route('clients') }}">
+                            <x-dropdown-link href="{{ route('sensors') }}">
                                 {{ __('Status dos Sensores') }}
                             </x-dropdown-link>
 
