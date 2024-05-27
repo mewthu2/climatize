@@ -54,7 +54,15 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($clientes as $cliente)
                         <tr>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300"></td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
+                                <x-primary-button href="{{ route('clients.edit', $cliente->id) }}">
+                                    <i class="fas fa-edit"></i>
+                                </x-primary-button>
+
+                                <x-primary-button href="{{ route('clients.destroy', $cliente->id) }}">
+                                      <i class="fas fa-times"></i>
+                                </x-primary-button>
+                            </td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->id }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->nome }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->email }}</td>

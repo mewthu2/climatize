@@ -60,8 +60,8 @@ class ClientesController extends Controller
 
     public function edit($id)
     {
-        $cliente = ClienteNovo::findOrFail($id);
-        return view('clients.edit', compact('cliente'));
+        $client = ClienteNovo::findOrFail($id);
+        return view('clients.edit', compact('client'));
     }
 
     public function update(Request $request, $id)
