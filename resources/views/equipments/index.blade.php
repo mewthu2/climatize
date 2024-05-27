@@ -3,7 +3,7 @@
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
             <i class="fas fa-users"></i> {{ __('Listagem de equipamentos') }}
             <x-primary-button class="ml-4" href="{{ route('equipments.create') }}">
-                {{ __('Novo equipamento') }}
+                <i class="fas fa-plus"></i> {{ __('Novo') }}
             </x-primary-button>
 
             @if(session()->has('success'))

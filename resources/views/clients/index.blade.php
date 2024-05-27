@@ -3,7 +3,7 @@
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
             <i class="fas fa-users"></i> {{ __('Listagem de Clientes') }}
             <x-primary-button class="ml-4" href="{{ route('clients.create') }}">
-                {{ __('Novo Cadastro de Cliente') }}
+                <i class="fas fa-plus"></i> {{ __('Novo') }}
             </x-primary-button>
 
             @if(session()->has('success'))
@@ -60,7 +60,7 @@
                                 </x-primary-button>
 
                                 <x-primary-button href="{{ route('clients.destroy', $cliente->id) }}">
-                                      <i class="fas fa-times"></i>
+                                    <i class="fas fa-times"></i>
                                 </x-primary-button>
                             </td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->id }}</td>

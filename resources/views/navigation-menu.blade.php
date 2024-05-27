@@ -224,7 +224,7 @@
 
             <div class="border-t border-gray-500"></div>
 
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
+            <x-responsive-nav-link href="{{ route('equipments') }}" :active="request()->routeIs('equipments')">
                 {{ __('Equipamentos') }}
             </x-responsive-nav-link>
 
@@ -233,15 +233,7 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
-                {{ __('Grupos de Acesso') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
-                {{ __('Usuários') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
-                {{ __('Contatos') }}
+                {{ __('Clientes') }}
             </x-responsive-nav-link>
 
             <div class="border-t border-gray-500"></div>
@@ -252,7 +244,7 @@
 
             <div class="border-t border-gray-500"></div>
 
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
+            <x-responsive-nav-link href="{{ route('sensors') }}" :active="request()->routeIs('sensors')">
                 {{ __('Status dos Sensores') }}
             </x-responsive-nav-link>
 
