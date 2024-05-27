@@ -40,7 +40,7 @@
         <div class="text-right p-2">
             <input type="text" name="search" class="form-input rounded-md shadow-sm w-full"
                    placeholder="Buscar sensores..." value="{{ request('search') }}">
-            <x-primary-button type="submit" class="mt-2">
+            <x-primary-button type="submit" class="mt-2 w-full">
                 {{ __('Pesquisar') }}
             </x-primary-button>
         </div>
