@@ -36,6 +36,16 @@
         </h5>
     </x-slot>
 
+    <form method="GET" action="{{ route('freezers') }}" class="mx-auto container items-center">
+        <div class="text-right p-2">
+            <input type="text" name="search" class="form-input rounded-md shadow-sm w-full"
+                   placeholder="Buscar freezers..." value="{{ request('search') }}">
+            <x-primary-button type="submit" class="mt-2 w-full">
+                {{ __('Pesquisar') }}
+            </x-primary-button>
+        </div>
+    </form> 
+
     <section class="container mx-auto p-2" style="overflow-y: scroll;">
         <div class="w-full mb-8 rounded-lg shadow-lg" style="overflow-y: scroll;">
             <div class="w-full" style="overflow-y: scroll;">

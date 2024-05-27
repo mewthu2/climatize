@@ -36,6 +36,16 @@
         </h5>
     </x-slot>
 
+    <form method="GET" action="{{ route('clients') }}" class="mx-auto container items-center">
+        <div class="text-right p-2">
+            <input type="text" name="search" class="form-input rounded-md shadow-sm w-full"
+                   placeholder="Buscar clientes..." value="{{ request('search') }}">
+            <x-primary-button type="submit" class="mt-2 w-full">
+                {{ __('Pesquisar') }}
+            </x-primary-button>
+        </div>
+    </form> 
+
     <section class="container mx-auto p-2" style="overflow-y: scroll;">
         <div class="w-full mb-8 rounded-lg shadow-lg" style="overflow-y: scroll;">
             <div class="w-full" style="overflow-y: scroll;">
@@ -52,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($clientes as $cliente)
+                        @foreach ($clients as $cliente)
                         <tr>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
                                 <x-primary-button href="{{ route('clients.edit', $cliente->id) }}">

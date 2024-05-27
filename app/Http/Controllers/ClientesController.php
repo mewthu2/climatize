@@ -31,11 +31,35 @@ class ClientesController extends Controller
         ]);
     }
 
-    public function index()
-    {   
-        $clientes = ClienteNovo::all();
+    public function index(Request $request)
+    {
+        $query = ClienteNovo::query();
 
-        return view('clients.index', ['clientes' => $clientes]);
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('nome', 'like', "%{$search}%")
+                ->orWhere('cpf', 'like', "%{$search}%")
+                ->orWhere('cnpj', 'like', "%{$search}%")
+                ->orWhere('inscricao_estadual', 'like', "%{$search}%")
+                ->orWhere('tipo', 'like', "%{$search}%")
+                ->orWhere('endereco', 'like', "%{$search}%")
+                ->orWhere('numero', 'like', "%{$search}%")
+                ->orWhere('complemento', 'like', "%{$search}%")
+                ->orWhere('bairro', 'like', "%{$search}%")
+                ->orWhere('cidade', 'like', "%{$search}%")
+                ->orWhere('estado', 'like', "%{$search}%")
+                ->orWhere('cidade', 'like', "%{$search}%")
+                ->orWhere('cep', 'like', "%{$search}%")
+                ->orWhere('telefone', 'like', "%{$search}%")
+                ->orWhere('celular', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('observacao', 'like', "%{$search}%")
+                ->orWhere('descricao', 'like', "%{$search}%");
+        }
+
+        $clients = $query->get();
+
+        return view('clients.index', ['clients' => $clients]);
     }
 
     public function create()

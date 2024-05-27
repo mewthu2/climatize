@@ -22,9 +22,21 @@ class FreezersController extends Controller
         ]);
     }
 
-    public function index()
-    {   
-        $freezers = Freezer::all();
+    public function index(Request $request)
+    {
+        $query = Freezer::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('id_equipamento', 'like', "%{$search}%")
+                ->orWhere('mac_sensor', 'like', "%{$search}%")
+                ->orWhere('nome_unidade', 'like', "%{$search}%")
+                ->orWhere('referencia', 'like', "%{$search}%")
+                ->orWhere('detalhe', 'like', "%{$search}%")
+                ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+        }
+
+        $freezers = $query->get();
 
         return view('freezers.index', ['freezers' => $freezers]);
     }

@@ -5,12 +5,12 @@
       </h5>
   </x-slot>
 
-  <section class="container mx-auto p-2 font-mono" style="overflow-y: scroll;">
+  <section class="container mx-auto p-2" style="overflow-y: scroll;">
       <div class="w-full mb-8 rounded-lg shadow-lg" style="overflow-y: scroll;">
           <div class="w-full" style="overflow-y: scroll;">
               <table class="w-full overflow-x-auto border-collapse border border-gray-300">
                   <thead>
-                      <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                      <tr class="text-sm tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                           <th class="px-6 py-3 border border-gray-300">ID</th>
                           <th class="px-6 py-3 border border-gray-300">Nome</th>
                           <th class="px-6 py-3 border border-gray-300">Telefone</th>
