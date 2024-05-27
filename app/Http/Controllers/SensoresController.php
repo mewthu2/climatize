@@ -17,9 +17,21 @@ class SensoresController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $sensors = StatusSensor::all();
+        $query = StatusSensor::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('id', 'like', "%{$search}%")
+                ->orWhere('id_equipamento', 'like', "%{$search}%")
+                ->orWhere('mac_sensor', 'like', "%{$search}%")
+                ->orWhere('status', 'like', "%{$search}%")
+                ->orWhere('ip_cliente', 'like', "%{$search}%")
+                ->orWhere('offset', 'like', "%{$search}%");
+        }
+
+        $sensors = $query->get();
 
         return view('sensors.index', ['sensors' => $sensors]);
     }
