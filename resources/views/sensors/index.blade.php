@@ -36,7 +36,7 @@
         </h5>
     </x-slot>
 
-    <form method="GET" action="{{ route('sensors') }}" class="mx-auto container grid grid-cols-2 gap-4 items-center">
+    <form method="GET" action="{{ route('sensors') }}" class="mx-auto container items-center">
         <div class="text-right p-2">
             <input type="text" name="search" class="form-input rounded-md shadow-sm w-full"
                    placeholder="Buscar sensores..." value="{{ request('search') }}">
