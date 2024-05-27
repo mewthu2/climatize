@@ -59,7 +59,7 @@
                                     <x-primary-button href="{{ route('equipments.destroy', $equipment->id) }}">
                                         <i class="fas fa-times"></i>
                                     </x-primary-button>                                    
-                                    <x-primary-button href="{{ route('equipments.create') }}">
+                                    <x-primary-button :href="route('sensors', ['search' => $equipment->id])" target="_blank">
                                         <i class="fas fa-signal"></i>
                                     </x-primary-button>
                                 </td>
