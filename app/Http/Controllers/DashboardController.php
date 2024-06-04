@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Degelo;
 use App\Models\PanelTemperatura;
 
@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {   
-        $cad_usuario = Usuario::where('login', auth()->user()->email)->first();
+        $cad_usuario = auth()->user();
 
         $employees = collect();
 

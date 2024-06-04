@@ -6,6 +6,8 @@ use App\Http\Controllers\ContatosController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\EquipamentosController;
 use App\Http\Controllers\SensoresController;
+use App\Http\Controllers\PanelTemperaturasController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 
@@ -17,6 +19,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('/reports')->group(function () {
         Route::get('/freezer_info', [ReportsController::class, 'freezer_info'])->name('freezer_info');
     });
+
+    Route::prefix('/usuarios')->group(function () {
+        Route::get('/', [UsersController::class, 'index'])->name('users');
+        Route::get('/create', [UsersController::class, 'create'])->name('users.create');
+        Route::post('/store', [UsersController::class, 'store'])->name('users.store');
+        Route::get('/{id}/edit', [UsersController::class, 'edit'])->name('users.edit');
+        Route::put('/{id}/update', [UsersController::class, 'update'])->name('users.update');
+        Route::get('/{id}/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
+    }); 
 
     Route::prefix('/clientes')->group(function () {
         Route::get('/', [ClientesController::class, 'index'])->name('clients');
@@ -52,6 +63,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/{id}/edit', [SensoresController::class, 'edit'])->name('sensors.edit');
         Route::put('/{id}/update', [SensoresController::class, 'update'])->name('sensors.update');
         Route::get('/{id}/destroy', [SensoresController::class, 'destroy'])->name('sensors.destroy');
+    });
+
+    Route::prefix('/painel_temperaturas')->group(function () {
+        Route::get('/', [PanelTemperaturasController::class, 'index'])->name('painel_temperaturas');
+        Route::get('/create', [PanelTemperaturasController::class, 'create'])->name('painel_temperaturas.create');
+        Route::post('/store', [PanelTemperaturasController::class, 'store'])->name('painel_temperaturas.store');
+        Route::get('/{id}/edit', [PanelTemperaturasController::class, 'edit'])->name('painel_temperaturas.edit');
+        Route::put('/{id}/update', [PanelTemperaturasController::class, 'update'])->name('painel_temperaturas.update');
+        Route::get('/{id}/destroy', [PanelTemperaturasController::class, 'destroy'])->name('painel_temperaturas.destroy');
     }); 
 
     Route::prefix('/contatos')->group(function () {

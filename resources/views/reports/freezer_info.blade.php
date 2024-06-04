@@ -4,8 +4,8 @@
       <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers') }}
     </h5>
   </x-slot>
-
-  <div class="">
+  
+  <div class="container mx-auto mt-2 px-4 py-4 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
     <div class="px-4 py-4 grid grid-cols-1 gap-1 mt-2">
       <div class="grid grid-cols-4 gap-1">
         <div class="text-xs lg:py-3 lg:px-4 lg:pe-9 col-span-1">

@@ -1,6 +1,6 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Informações de Perfil') }}
+        <span class="text-white">{{ __('Informações de Perfil') }}</span>
     </x-slot>
 
     <x-slot name="description">

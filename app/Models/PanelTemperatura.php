@@ -22,6 +22,8 @@ class PanelTemperatura extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
+        'id_equipamento',
         'mac_sensor',
         'nome_unidade',
         'referencia',

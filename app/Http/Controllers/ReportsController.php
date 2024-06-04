@@ -12,7 +12,7 @@ class ReportsController extends Controller
 {
     public function freezer_info()
     {
-        $cad_usuario = Usuario::where('login', auth()->user()->email)->first();
+        $cad_usuario = auth()->user();
     
         $cad_freezers = collect();
     

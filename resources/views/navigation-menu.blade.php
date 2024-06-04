@@ -19,16 +19,31 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
-                    <x-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
-                        {{ __('Gráficos por Freezers') }}
-                    </x-nav-link>
-                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown >
                         <x-slot name="trigger">
-                            <span class="cursor-pointer text-gray-500">Cadastros <i class="fas fa-sort-down"></i></span> 
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 cursor-pointer">Administração <i class="fas fa-sort-down"></i></span> 
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Parametrizações') }}
+                            </div>
+
+                            <div class="border-t border-gray-200"></div>
+
+                            <x-dropdown-link href="{{ route('users') }}">
+                                {{ __('Usuários') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                    <x-dropdown >
+                        <x-slot name="trigger">
+                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Cadastros <i class="fas fa-sort-down"></i></span> 
                         </x-slot>
 
                         <x-slot name="content">
@@ -53,6 +68,10 @@
                             <x-dropdown-link href="{{ route('contatos') }}">
                                 {{ __('Contatos') }}
                             </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('painel_temperaturas') }}">
+                                {{ __('Painéis de Temperatura') }}
+                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -60,7 +79,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown class="">
                         <x-slot name="trigger">
-                            <span class="cursor-pointer text-gray-500">Configurações <i class="fas fa-sort-down"></i></span> 
+                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Configurações <i class="fas fa-sort-down"></i></span> 
                         </x-slot>
 
                         <x-slot name="content">
@@ -76,6 +95,26 @@
 
                             <x-dropdown-link href="{{ route('clients') }}">
                                 {{ __('Enviar Mensagem') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                    <x-dropdown >
+                        <x-slot name="trigger">
+                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Relatórios <i class="fas fa-sort-down"></i></span> 
+                        </x-slot>
+    
+                        <x-slot name="content">
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Tipos de relatórios') }}
+                            </div>
+    
+                            <div class="border-t border-gray-200"></div>
+    
+                            <x-dropdown-link href="{{ route('freezer_info') }}">
+                                {{ __('Gráficos por Freezers') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -212,8 +251,20 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
-                {{ __('Gráficos por Freezers') }}
+            <div class="border-t border-gray-500"></div>
+
+            <x-responsive-nav-link>
+                <span class="text-gray-500">Administração <i class="fas fa-tasks"></i></span> 
+            </x-responsive-nav-link>
+
+            <div class="border-t border-gray-500"></div>
+
+            <x-responsive-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                {{ __('Usuários') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                {{ __('Permissões') }}
             </x-responsive-nav-link>
 
             <div class="border-t border-gray-500"></div>
@@ -236,6 +287,10 @@
                 {{ __('Clientes') }}
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link href="{{ route('painel_temperaturas') }}" :active="request()->routeIs('painel_temperaturas')">
+                {{ __('Painéis de Temperatura') }}
+            </x-responsive-nav-link>
+
             <div class="border-t border-gray-500"></div>
 
             <x-responsive-nav-link>
@@ -250,6 +305,18 @@
 
             <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
                 {{ __('Enviar mensagem') }}
+            </x-responsive-nav-link>
+
+            <div class="border-t border-gray-500"></div>
+            
+            <x-responsive-nav-link>
+                <span class="text-gray-500">Relatórios <i class="far fa-chart-bar"></i></span>
+            </x-responsive-nav-link>
+
+            <div class="border-t border-gray-500"></div>
+
+            <x-responsive-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
+                {{ __('Gráficos por Freezers') }}
             </x-responsive-nav-link>
         </div>
 
