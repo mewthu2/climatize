@@ -53,15 +53,15 @@
                         @foreach ($equipments as $equipment)
                             <tr>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
+                                    <x-secondary-button :href="route('sensors', ['search' => $equipment->id])" target="_blank">
+                                        <span class="font-medium">s</span>
+                                    </x-secondary-button>
                                     <x-primary-button href="{{ route('equipments.edit', $equipment->id) }}">
-                                        <i class="fas fa-edit"></i>
-                                    </x-primary-button>
-                                    <x-primary-button href="{{ route('equipments.destroy', $equipment->id) }}">
-                                        <i class="fas fa-times"></i>
-                                    </x-primary-button>                                    
-                                    <x-primary-button :href="route('sensors', ['search' => $equipment->id])" target="_blank">
-                                        <i class="fas fa-signal"></i>
-                                    </x-primary-button>
+                                        <span class="font-medium">e</span>
+                                    </x-primary-button>                                  
+                                    <x-danger-button href="{{ route('equipments.destroy', $equipment->id) }}">
+                                        <span class="font-medium">x</span>
+                                    </x-danger-button>  
                                 </td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->id }}</td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $equipment->nome }}</td>

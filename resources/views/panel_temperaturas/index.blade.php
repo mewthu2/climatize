@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
       <h5 class="text-left font-semibold text-sm text-white leading-tight">
-          <i class="fas fa-thermometer-half"></i> {{ __('Listagem de Painéis de Temperatura') }}
+          <i class="fas fa-thermometer-half"></i> {{ __('Listagem de Painéis') }}
           <x-primary-button class="ml-4" href="{{ route('painel_temperaturas.create') }}">
               <i class="fas fa-plus"></i> {{ __('Novo') }}
           </x-primary-button>
@@ -73,12 +73,12 @@
                             <tr>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
                                     <x-primary-button href="{{ route('painel_temperaturas.edit', $panel->id) }}">
-                                        <i class="fas fa-edit"></i>
+                                        <span class="font-medium">e</span>
                                     </x-primary-button>
 
-                                    <x-primary-button href="{{ route('painel_temperaturas.destroy', $panel->id) }}">
-                                        <i class="fas fa-times"></i>
-                                    </x-primary-button>
+                                    <x-danger-button href="{{ route('painel_temperaturas.destroy', $panel->id) }}">
+                                        <span class="font-medium">x</span>
+                                    </x-danger-button>
                                 </td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $panel->id }}</td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $panel->id_equipamento }}</td>

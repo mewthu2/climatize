@@ -66,12 +66,12 @@
                         <tr>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
                                 <x-primary-button href="{{ route('clients.edit', $cliente->id) }}">
-                                    <i class="fas fa-edit"></i>
+                                    <span class="font-medium">e</span>
                                 </x-primary-button>
 
-                                <x-primary-button href="{{ route('clients.destroy', $cliente->id) }}">
-                                    <i class="fas fa-times"></i>
-                                </x-primary-button>
+                                <x-danger-button href="{{ route('clients.destroy', $cliente->id) }}">
+                                    <span class="font-medium">x</span>
+                                </x-danger-button>
                             </td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->id }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $cliente->nome }}</td>
