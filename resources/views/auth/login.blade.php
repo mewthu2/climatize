@@ -4,8 +4,8 @@
             <div class="container flex items-center">
                 <x-logo-climatize class="mr-4" :width="200" :height="200"></x-logo-climatize>
             </div>
-            <span class="bg-blue-100 text-blue-800 text-2xl px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 flex items-center justify-center">4 Climatize</span>
-            <span class="ms-2 text-sm text-gray-600 px-2.5">Painel de Gerenciamento</span>
+            <span class="text-white text-2xl px-2.5 py-0.5 flex items-center justify-center animate-pulse">4 Climatize</span>
+            <span class="ms-2 text-sm text-white px-2.5">Painel de Gerenciamento</span>
         </x-slot>        
 
         <x-validation-errors class="mb-4" />
