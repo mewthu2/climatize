@@ -26,27 +26,6 @@ class ReportsController extends Controller
         if (request()->ajax() && $intervalo && $etiqueta_ident_freezer) {
             $logs = collect();
     
-            switch ($intervalo) {
-                case 6:
-                    $logs = Log6Temperatura::where('etiqueta_ident', $etiqueta_ident_freezer)
-                        ->where('cad_cliente_id', $cad_usuario->cad_cliente_id ?? null)
-                        ->get();
-                    break;
-                case 12:
-                    $logs = Log12Temperatura::where('etiqueta_ident', $etiqueta_ident_freezer)
-                        ->where('cad_cliente_id', $cad_usuario->cad_cliente_id ?? null)
-                        ->get();
-                    break;
-                case 24:
-                    $logs = Log24Temperatura::where('etiqueta_ident', $etiqueta_ident_freezer)
-                        ->where('cad_cliente_id', $cad_usuario->cad_cliente_id ?? null)
-                        ->get();
-                    break;
-                default:
-                    $logs = collect();
-                    break;
-            }
-    
             return response()->json($logs);
         } else {
             return view('reports.freezer_info')->with(compact('cad_freezers'));

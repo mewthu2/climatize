@@ -65,9 +65,9 @@
                                 {{ __('Clientes') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link href="{{ route('contatos') }}">
+                            {{-- <x-dropdown-link href="{{ route('contatos') }}">
                                 {{ __('Contatos') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> --}}
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -89,9 +89,9 @@
                                 {{ __('Status dos Sensores') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link href="{{ route('clients') }}">
+                            {{-- <x-dropdown-link href="{{ route('clients') }}">
                                 {{ __('Enviar Mensagem') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> --}}
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -295,9 +295,9 @@
                 {{ __('Status dos Sensores') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
+            {{-- <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
                 {{ __('Enviar mensagem') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
 
             <div class="border-t border-gray-500"></div>
             

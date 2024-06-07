@@ -3,18 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\StatusSensor;
+use App\Models\ClienteNovo;
 use Illuminate\Http\Request;
 
 class SensoresController extends Controller
 {
+    private $errorMessages = [
+        'id_equipamento.required' => 'O campo ID do Equipamento é obrigatório.',
+        'mac_sensor.required' => 'O campo Mac Sensor é obrigatório.',
+        'status.required' => 'O campo Status é obrigatório.',
+        'ip_cliente.required' => 'O campo IP Cliente é obrigatório.',
+        'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
+    ];
+
     private function validate_params(Request $request)
     {
         return $request->validate([
             'id_equipamento' => 'required',
             'mac_sensor' => 'required',
             'status' => 'required',
-            'ip_cliente' => 'required'
-        ]);
+            'ip_cliente' => 'required',
+            'cad_cliente_id' => 'nullable|exists:cad_clientes,id'
+        ], $this->errorMessages);
     }
 
     public function index(Request $request)
@@ -36,25 +46,45 @@ class SensoresController extends Controller
         return view('sensors.index', ['sensors' => $sensors]);
     }
 
+    public function create()
+    {
+        $clients = ClienteNovo::all();
+        return view('sensors.create', compact('clients'));
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $validatedData = $this->validate_params($request);
+            StatusSensor::create($validatedData);
+
+            return redirect()->route('sensors')->with('success', 'Sensor criado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao criar o sensor: ' . $e->getMessage())->withInput();
+        }
+    }
+
     public function edit($id)
     {
+        $clients = ClienteNovo::all();
         $sensor = StatusSensor::findOrFail($id);
-        return view('sensors.edit', compact('sensor'));
+        return view('sensors.edit', compact('sensor', 'clients'));
     }
 
     public function update(Request $request, $id)
     {
-        $validatedData = $this->validate_params($request);
-    
         try {
+            $validatedData = $this->validate_params($request);
             $sensor = StatusSensor::findOrFail($id);
             $sensor->update($validatedData);
-    
-            return redirect()->route('sensors')
-                            ->with('success', 'Sensor atualizado com sucesso!');
+
+            return redirect()->route('sensors')->with('success', 'Sensor atualizado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return redirect()->route('sensors.edit', $id)
-                            ->with('error', 'Erro ao atualizar o sensor: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao atualizar o sensor: ' . $e->getMessage())->withInput();
         }
     }
 
@@ -64,31 +94,9 @@ class SensoresController extends Controller
             $sensor = StatusSensor::findOrFail($id);
             $sensor->delete();
 
-            return redirect()->route('sensors')
-                            ->with('success', 'Sensor excluído com sucesso!');
+            return redirect()->route('sensors')->with('success', 'Sensor excluído com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('sensors')
-                            ->with('error', 'Erro ao excluir o sensor: ' . $e->getMessage());
-        }
-    }
-
-    public function create()
-    {
-        return view('sensors.create');
-    }
-
-    public function store(Request $request)
-    {
-        $validatedData = $this->validate_params($request);
-
-        try {
-            StatusSensor::create($validatedData);
-
-            return redirect()->route('sensors')
-                            ->with('success', 'Sensor criado com sucesso!');
-        } catch (\Exception $e) {
-            return redirect()->route('sensors.create')
-                            ->with('error', 'Erro ao criar o sensor: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao excluir o sensor: ' . $e->getMessage());
         }
     }
 }

@@ -97,8 +97,7 @@
 
                 <div>
                     <x-label class="text-white" for="matriz_id" :value="__('Matriz ID *')" />
-                    <x-input id="matriz_id" class="mt-1 w-full"
-                    type="text" name="matriz_id" :value="old('matriz_id')" required />
+                    <x-input id="matriz_id" class="mt-1 w-full" type="text" name="matriz_id" :value="old('matriz_id')" required />
                 </div>
             </div>
 
@@ -113,4 +112,3 @@
         </form>
     </section>
 </x-app-layout>
-

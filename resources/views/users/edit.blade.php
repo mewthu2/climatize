@@ -10,8 +10,8 @@
             @csrf
             @method('PUT')
 
-            @if(session()->has('error'))
-                <span class="bg-red-100 border border-red-400 text-red-700 rounded">{{ session()->get('error') }}</span>
+            @if (session()->has('error'))
+                <span class="bg-red-100 border border-red-400 text-red-700 rounded container mb-4">{{ session()->get('error') }}</span>
             @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

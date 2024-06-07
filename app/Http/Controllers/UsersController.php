@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    private $errorMessages = [
+        'name.required' => 'O campo Nome é obrigatório.',
+        'name.string' => 'O campo Nome deve ser uma string.',
+        'name.max' => 'O campo Nome não pode exceder 255 caracteres.',
+        'email.required' => 'O campo Email é obrigatório.',
+        'email.string' => 'O campo Email deve ser uma string.',
+        'email.email' => 'O campo Email deve ser um email válido.',
+        'email.max' => 'O campo Email não pode exceder 255 caracteres.',
+        'email.unique' => 'O campo Email já está em uso.',
+        'password.required' => 'O campo Senha é obrigatório.',
+        'password.string' => 'O campo Senha deve ser uma string.',
+        'password.min' => 'O campo Senha deve ter pelo menos 8 caracteres.',
+        'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
+    ];
+
     private function validate_params(Request $request)
     {
         return $request->validate([
@@ -15,7 +30,7 @@ class UsersController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'cad_cliente_id' => 'nullable|exists:cad_clientes,id',
-        ]);
+        ], $this->errorMessages);
     }
 
     public function index(Request $request)
@@ -33,16 +48,15 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $this->validate_params($request);
-
         try {
+            $validatedData = $this->validate_params($request);
             User::create($validatedData);
-    
-            return redirect()->route('users')
-                             ->with('success', 'Usuário criado com sucesso!');
+
+            return redirect()->route('users')->with('success', 'Usuário criado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return redirect()->route('users.create')
-                             ->with('error', 'Erro ao criar usuário: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao criar usuário: ' . $e->getMessage())->withInput();
         }
     }
 
@@ -56,18 +70,16 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $this->validate_params($request);
-        dd($request);
         try {
+            $validatedData = $this->validate_params($request);
             $user = User::findOrFail($id);
             $user->update($validatedData);
 
-            return redirect()->route('users')
-                            ->with('success', 'Usuário atualizado com sucesso!');
+            return redirect()->route('users')->with('success', 'Usuário atualizado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            dd($e);
-            return redirect()->route('users.edit', $id)
-                            ->with('error', 'Erro ao atualizar usuário: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao atualizar usuário: ' . $e->getMessage())->withInput();
         }
     }
 
@@ -77,11 +89,10 @@ class UsersController extends Controller
             $user = User::findOrFail($id);
             $user->delete();
 
-            return redirect()->route('users')
-                            ->with('success', 'Usuário excluído com sucesso!');
+            return redirect()->route('users')->with('success', 'Usuário excluído com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('users')
-                            ->with('error', 'Erro ao excluir usuário: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao excluir usuário: ' . $e->getMessage());
         }
     }
 }
+

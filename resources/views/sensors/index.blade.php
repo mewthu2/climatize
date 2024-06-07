@@ -54,6 +54,7 @@
                         <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                             <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
                             <th class="px-6 py-3 border border-gray-300">ID</th>
+                            <th class="px-6 py-3 border border-gray-300">Cliente</th>
                             <th class="px-6 py-3 border border-gray-300">ID Equipamento</th>
                             <th class="px-6 py-3 border border-gray-300">Mac Sensor</th>
                             <th class="px-6 py-3 border border-gray-300">Status</th>
@@ -73,6 +74,7 @@
                                 </x-danger-button>
                             </td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->id }}</td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->cliente->nome ?? 'N/A' }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->id_equipamento }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->mac_sensor }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->status }}</td>

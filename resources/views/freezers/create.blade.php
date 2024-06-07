@@ -51,11 +51,16 @@
                 </div>
 
                 <div>
+                    <x-label class="text-white" for="limite_pos" :value="__('Limite Pos *')" />
+                    <x-input id="limite_pos" class="mt-1 w-full" type="text" name="limite_pos" :value="old('limite_pos')" required />
+                </div>
+
+                <div>
                     <x-label class="text-white" for="cad_cliente_id" :value="__('* Cliente:')" />
                     <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
                         <option value="">{{ __('Selecione um cliente') }}</option>
                         @foreach($all_clients as $client)
-                            <option value="{{ $client->id }}" {{ old('cad_cliente_id', $panel->cad_cliente_id) == $client->id ? 'selected' : '' }}>
+                            <option value="{{ $client->id }}">
                                 {{ $client->nome }}
                             </option>
                         @endforeach

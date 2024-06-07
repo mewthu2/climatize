@@ -10,7 +10,23 @@
             @csrf
             @method('PUT')
 
+            @if (session()->has('error'))
+                <span class="bg-red-100 border border-red-400 text-red-700 rounded container mb-4">{{ session()->get('error') }}</span>
+            @endif
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <x-label class="text-white" for="cad_cliente_id" :value="__('Vincular Cliente *')" />
+                    <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select">
+                        <option value="" @if(is_null($sensor->cad_cliente_id)) selected @endif>Selecione um cliente</option>
+                        @foreach($clients as $client)
+                            <option value="{{ $client->id }}" @if($sensor->cad_cliente_id == $client->id) selected @endif>
+                                {{ $client->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>   
+
                 <div>
                     <x-label class="text-white" for="id_equipamento" :value="__('ID Equipamento *')" />
                     <x-input id="id_equipamento" class="mt-1 w-full" type="text" name="id_equipamento" value="{{ $sensor->id_equipamento }}" required autofocus/>
