@@ -4,8 +4,7 @@
             <i class="fas fa-tachometer-alt"></i> {{ __('Painel Geral de Monitoramento') }}
         </h5>
     </x-slot>
-    
-    <div class="py-2 px-2 whitespace-normal grid lg:grid-cols-4 gap-1 sm:grid-cols-1">
+    <section class="container mx-auto py-2 px-2 rounded-lg shadow-lg grid lg:grid-cols-4 gap-1 sm:grid-cols-1">
         @foreach($painels as $painel)
             <div class="mb-2 mx-auto sm:px-2 lg:px-2">
                 <div class="overflow-hidden shadow-xl sm:rounded-lg" style="background: #c7caeb;">
@@ -72,5 +71,5 @@
                 </div>
             </div>
         @endforeach
-    </div>
+    </section>
 </x-app-layout>
