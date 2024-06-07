@@ -32,10 +32,10 @@
 
             <div class="p-4 bg-gray-500 rounded-lg flex items-center justify-center mt-4">
                 <x-primary-button class="ml-4">
-                    {{ __('Criar') }}
+                    <i class="fas fa-save"></i>&nbsp;{{ __('Criar') }}
                 </x-primary-button>
                 <x-primary-button class="ml-4" href="{{ route('users') }}">
-                    {{ __('Voltar') }}
+                    <i class="fas fa-undo"></i>&nbsp;{{ __('Voltar') }}
                 </x-primary-button>
             </div>
         </form>

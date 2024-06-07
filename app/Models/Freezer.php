@@ -31,8 +31,7 @@ class Freezer extends Model
         'etiqueta_ident',
         'limite_neg',
         'limite_pos',
-        'cad_cliente_id',
-        'cad_responsavel_id',
+        'cad_cliente_id'
     ];
 
     /**
@@ -41,13 +40,5 @@ class Freezer extends Model
     public function cliente()
     {
         return $this->belongsTo(\App\Models\ClienteNovo::class, 'cad_cliente_id');
-    }
-
-    /**
-     * Get the responsible associated with the freezer.
-     */
-    public function responsible()
-    {
-        return $this->belongsTo(\App\Models\User::class, 'cad_responsavel_id');
     }
 }

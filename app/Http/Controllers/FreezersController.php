@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Freezer;
+use App\Models\ClienteNovo;
 use Illuminate\Http\Request;
 
 class FreezersController extends Controller
 {
+    private $errorMessages = [
+        'id_equipamento.required' => 'O campo ID do Equipamento é obrigatório.',
+        'mac_sensor.required' => 'O campo Mac Sensor é obrigatório.',
+        'nome_unidade.required' => 'O campo Nome Unidade é obrigatório.',
+        'referencia.required' => 'O campo Referência é obrigatório.',
+        'detalhe.required' => 'O campo Detalhe é obrigatório.',
+        'setpoint.required' => 'O campo Setpoint é obrigatório.',
+        'etiqueta_ident.required' => 'O campo Etiqueta Ident é obrigatório.',
+        'limite_neg.required' => 'O campo Limite Neg é obrigatório.',
+        'limite_pos.required' => 'O campo Limite Pos é obrigatório.',
+        'cad_cliente_id.required' => 'O campo Cliente é obrigatório.',
+        'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
+    ];
+
     private function validate_params(Request $request)
     {
         return $request->validate([
@@ -18,68 +33,84 @@ class FreezersController extends Controller
             'setpoint' => 'required',
             'etiqueta_ident' => 'required',
             'limite_neg' => 'required',
-            'limite_pos' => 'required'
-        ]);
+            'limite_pos' => 'required',
+            'cad_cliente_id' => 'required|exists:cad_clientes,id',
+        ], $this->errorMessages);
     }
 
     public function index(Request $request)
     {
-        $query = Freezer::query();
+        try {
+            $query = Freezer::query();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('id_equipamento', 'like', "%{$search}%")
-                ->orWhere('mac_sensor', 'like', "%{$search}%")
-                ->orWhere('nome_unidade', 'like', "%{$search}%")
-                ->orWhere('referencia', 'like', "%{$search}%")
-                ->orWhere('detalhe', 'like', "%{$search}%")
-                ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+            if ($request->has('search')) {
+                $search = $request->input('search');
+                $query->where('id_equipamento', 'like', "%{$search}%")
+                    ->orWhere('mac_sensor', 'like', "%{$search}%")
+                    ->orWhere('nome_unidade', 'like', "%{$search}%")
+                    ->orWhere('referencia', 'like', "%{$search}%")
+                    ->orWhere('detalhe', 'like', "%{$search}%")
+                    ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+            }
+
+            $freezers = $query->get();
+
+            return view('freezers.index', ['freezers' => $freezers]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao listar os freezers: ' . $e->getMessage());
         }
-
-        $freezers = $query->get();
-
-        return view('freezers.index', ['freezers' => $freezers]);
     }
 
     public function create()
     {
-        return view('freezers.create');
+        try {
+            $all_clients = ClienteNovo::all();
+
+            return view('freezers.create', compact('all_clients'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao exibir o formulário de criação: ' . $e->getMessage());
+        }
     }
 
     public function store(Request $request)
     {
-        $validatedData = $this->validate_params($request);
-
         try {
+            $validatedData = $this->validate_params($request);
             Freezer::create($validatedData);
-    
-            return redirect()->route('freezers')
-                             ->with('success', 'Freezer criado com sucesso!');
+        
+            return redirect()->route('freezers')->with('success', 'Freezer criado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return redirect()->route('freezers')
-                             ->with('error', 'Erro ao criar o freezer: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao criar o freezer: ' . $e->getMessage())->withInput();
         }
     }
 
     public function edit($id)
     {
-        $freezer = Freezer::findOrFail($id);
-        return view('freezers.edit', compact('freezer'));
+        try {
+            $all_clients = ClienteNovo::all();
+            $freezer = Freezer::findOrFail($id);
+
+            return view('freezers.edit', compact('freezer', 'all_clients'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao exibir o formulário de edição: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $validatedData = $this->validate_params($request);
-
         try {
+            $validatedData = $this->validate_params($request);
+
             $freezer = Freezer::findOrFail($id);
             $freezer->update($validatedData);
 
-            return redirect()->route('freezers')
-                            ->with('success', 'Freezer atualizado com sucesso!');
+            return redirect()->route('freezers')->with('success', 'Freezer atualizado com sucesso!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return redirect()->route('freezers.edit', $id)
-                            ->with('error', 'Erro ao atualizar o freezer: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao atualizar o freezer: ' . $e->getMessage())->withInput();
         }
     }
 
@@ -88,12 +119,11 @@ class FreezersController extends Controller
         try {
             $freezer = Freezer::findOrFail($id);
             $freezer->delete();
-
-            return redirect()->route('freezers')
-                            ->with('success', 'Freezer excluído com sucesso!');
+            
+            return redirect()->route('freezers')->with('success', 'Freezer excluído com sucesso!');
         } catch (\Exception $e) {
-            return redirect()->route('freezers')
-                            ->with('error', 'Erro ao excluir o freezer: ' . $e->getMessage());
+            return back()->with('error', 'Erro ao excluir o freezer: ' . $e->getMessage());
         }
-    }
+    }    
 }
+        

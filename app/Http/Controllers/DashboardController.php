@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\DatalogSensorSlave;
 use App\Models\Degelo;
-use App\Models\PanelTemperatura;
+use App\Models\Freezer;
+use App\Models\StatusSensor;
 
 class DashboardController extends Controller
 {
@@ -12,18 +13,32 @@ class DashboardController extends Controller
     {   
         $cad_usuario = auth()->user();
 
-        $employees = collect();
+        $painels = collect();
 
         if ($cad_usuario && $cad_usuario->cad_cliente_id) {
 
-            $employees = PanelTemperatura::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->get();
+            // $painels = StatusSensor::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->get();
+            $painels = StatusSensor::all();
 
-            foreach ($employees as $employee) {
-                $employee->estaEmDegelo = Degelo::verificarEtiquetaEmDegelo($employee->etiqueta_ident);
+            foreach ($painels as $painel) {
+                # colocar depois para mostrar somente os status sensor ativos
+                $sensor = DatalogSensorSlave::where('mac_sensor', $painel->mac_sensor)
+                                            ->latest('dt_leitura');
+                $freezer = Freezer::where('id_equipamento', $painel->id_equipamento)->first();
+                $painel->atu = $sensor->value('temperatura');
+                $painel->dt_leitura = $sensor->value('dt_leitura');
+                $painel->etiqueta_ident = $freezer->value('etiqueta_ident');
+                $painel->min = $freezer->value('limite_neg');
+                $painel->max = $freezer->value('limite_pos');
+                $painel->setpoint = $freezer->value('setpoint');
+                $painel->unidade = $freezer->value('nome_unidade');
+                $painel->referencia = $freezer->value('referencia');
+                $painel->detalhe = $freezer->value('detalhe');
+                $painel->estaEmDegelo = Degelo::verificarEtiquetaEmDegelo($painel->etiqueta_ident);
             }
         }
 
-        return view('dashboard.index', compact('cad_usuario', 'employees'));
+        return view('dashboard.index', compact('cad_usuario', 'painels'));
     }
 
 }

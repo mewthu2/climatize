@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StatusSensor;
 use App\Models\PanelTemperatura;
 use App\Models\ClienteNovo;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class PanelTemperaturasController extends Controller
             'setpoint' => 'required|numeric',
             'max' => 'required|numeric',
             'min' => 'required|numeric',
-            'atu' => 'required|numeric',
+            'atu' => 'nullable',
         ]);
     }
 
@@ -74,7 +75,9 @@ class PanelTemperaturasController extends Controller
     {
         $all_clients = ClienteNovo::all();
         $panel = PanelTemperatura::findOrFail($id);
-        return view('panel_temperaturas.edit', compact('panel', 'all_clients'));
+
+        $sensors = StatusSensor::all();
+        return view('panel_temperaturas.edit', compact('panel', 'all_clients', 'sensors'));
     }
 
     public function update(Request $request, $id)
