@@ -68,10 +68,6 @@
                             <x-dropdown-link href="{{ route('contatos') }}">
                                 {{ __('Contatos') }}
                             </x-dropdown-link>
-
-                            <x-dropdown-link href="{{ route('painel_temperaturas') }}">
-                                {{ __('Painéis de Temperatura') }}
-                            </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -285,10 +281,6 @@
 
             <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
                 {{ __('Clientes') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link href="{{ route('painel_temperaturas') }}" :active="request()->routeIs('painel_temperaturas')">
-                {{ __('Painéis de Temperatura') }}
             </x-responsive-nav-link>
 
             <div class="border-t border-gray-500"></div>

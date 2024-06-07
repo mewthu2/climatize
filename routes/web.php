@@ -65,15 +65,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/{id}/destroy', [SensoresController::class, 'destroy'])->name('sensors.destroy');
     });
 
-    Route::prefix('/painel_temperaturas')->group(function () {
-        Route::get('/', [PanelTemperaturasController::class, 'index'])->name('painel_temperaturas');
-        Route::get('/create', [PanelTemperaturasController::class, 'create'])->name('painel_temperaturas.create');
-        Route::post('/store', [PanelTemperaturasController::class, 'store'])->name('painel_temperaturas.store');
-        Route::get('/{id}/edit', [PanelTemperaturasController::class, 'edit'])->name('painel_temperaturas.edit');
-        Route::put('/{id}/update', [PanelTemperaturasController::class, 'update'])->name('painel_temperaturas.update');
-        Route::get('/{id}/destroy', [PanelTemperaturasController::class, 'destroy'])->name('painel_temperaturas.destroy');
-    }); 
-
     Route::prefix('/contatos')->group(function () {
         Route::get('/', [ContatosController::class, 'index'])->name('contatos');
     });
