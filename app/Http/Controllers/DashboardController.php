@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 $painel->min = $freezer->value('limite_neg');
                 $painel->max = $freezer->value('limite_pos');
                 $painel->setpoint = $freezer->value('setpoint');
-                $painel->unidade = $freezer->value('nome_unidade');
+                $painel->nome_unidade = $freezer->value('nome_unidade');
                 $painel->referencia = $freezer->value('referencia');
                 $painel->detalhe = $freezer->value('detalhe');
                 $painel->estaEmDegelo = Degelo::verificarEtiquetaEmDegelo($painel->etiqueta_ident);
