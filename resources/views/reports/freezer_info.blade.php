@@ -121,7 +121,7 @@
             chart: {
                 type: 'line',
                 stacked: false,
-                width: window.innerWidth > 768 ? 1200 : 300,
+                width: window.innerWidth > 768 ? 1200 : 350,
                 height: window.innerWidth > 768 ? 500 : 400,
                 zoom: {
                     type: 'x',
