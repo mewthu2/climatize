@@ -8,7 +8,7 @@
                     <a href="{{ route('dashboard') }}">
                         <div class="container flex ml-1">
                             <x-logo-climatize :width="40" :height="40"></x-logo-climatize>
-                            <span class="text-white mt-2 text-sm animate-pulse font-semibold">4 </span><span class="text-cyan-400 animate-pulse text-sm mt-2">Climatize</span></span><i class="fa-regular fa-registered text-gray-600 mt-2 text-xs ml-1"></i>
+                            <span class="text-white mt-2 text-sm animate-pulse font-semibold">4 </span><span class="text-cyan-400 animate-pulse text-sm mt-2">Climatize</span></span>
                         </div>  
                     </a>
                 </div>
