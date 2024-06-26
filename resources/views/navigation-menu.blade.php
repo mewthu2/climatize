@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class= "border-b border-gray-100" style="background: #101431;">
+<nav x-data="{ open: false }" class= "border-b border-gray-400" style="background: #101431;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -7,23 +7,23 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <div class="container flex ml-1">
-                            <x-logo-climatize :width="50" :height="50"></x-logo-climatize>
-                            <span class="text-white mt-2 text-x animate-pulse">4 Climatize</span>
+                            <x-logo-climatize :width="40" :height="40"></x-logo-climatize>
+                            <span class="text-white mt-2 text-sm animate-pulse font-semibold">4 </span><span class="text-cyan-400 animate-pulse text-sm mt-2">Climatize</span></span><i class="fa-regular fa-registered text-gray-600 mt-2 text-xs ml-1"></i>
                         </div>  
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white px-1 pt-1">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-5 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown >
                         <x-slot name="trigger">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 cursor-pointer">Administração <i class="fas fa-sort-down"></i></span> 
+                            <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white cursor-pointer">Administração <i class="fas fa-sort-down ml-2"></i></span> 
                         </x-slot>
 
                         <x-slot name="content">
@@ -40,10 +40,10 @@
                     </x-dropdown>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                <div class="hidden sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown >
                         <x-slot name="trigger">
-                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Cadastros <i class="fas fa-sort-down"></i></span> 
+                            <span class="hidden space-x-8 sm:-my-px sm:ms-5 sm:flex text-white cursor-pointer">Cadastros <i class="fas fa-sort-down ml-2"></i></span> 
                         </x-slot>
 
                         <x-slot name="content">
@@ -72,10 +72,10 @@
                     </x-dropdown>
                 </div>
                 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-5 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown class="">
                         <x-slot name="trigger">
-                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Configurações <i class="fas fa-sort-down"></i></span> 
+                            <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white cursor-pointer">Configurações <i class="fas fa-sort-down ml-2"></i></span> 
                         </x-slot>
 
                         <x-slot name="content">
@@ -96,10 +96,10 @@
                     </x-dropdown>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-5 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown >
                         <x-slot name="trigger">
-                            <span class="cursor-pointer bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Relatórios <i class="fas fa-sort-down"></i></span> 
+                            <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white cursor-pointer">Relatórios <i class="fas fa-sort-down ml-2"></i></span> 
                         </x-slot>
     
                         <x-slot name="content">
