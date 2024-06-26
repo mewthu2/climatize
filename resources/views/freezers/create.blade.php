@@ -9,10 +9,17 @@
         <form method="POST" action="{{ route('freezers.store') }}">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 <div>
-                    <x-label class="text-white" for="id_equipamento" :value="__('ID do Equipamento *')" />
-                    <x-input id="id_equipamento" class="mt-1 w-full" type="text" name="id_equipamento" :value="old('id_equipamento')" required autofocus />
+                    <x-label class="text-white" for="cad_cliente_id" :value="__('* Cliente:')" />
+                    <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
+                        <option value="">{{ __('Selecione um cliente') }}</option>
+                        @foreach($all_clients as $client)
+                            <option value="{{ $client->id }}" {{ old('cad_cliente_id') == $client->id ? 'selected' : '' }}>
+                                {{ $client->nome }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div>
@@ -56,12 +63,12 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cad_cliente_id" :value="__('* Cliente:')" />
-                    <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
-                        <option value="">{{ __('Selecione um cliente') }}</option>
-                        @foreach($all_clients as $client)
-                            <option value="{{ $client->id }}">
-                                {{ $client->nome }}
+                    <x-label class="text-white" for="status_sensor_id" :value="__('Status Sensor *')" />
+                    <select id="status_sensor_id" name="status_sensor_id" class="mt-1 w-full form-select" required>
+                        <option value="">{{ __('Selecione um status sensor') }}</option>
+                        @foreach($status_sensors as $status_sensor)
+                            <option value="{{ $status_sensor->id }}" {{ old('status_sensor_id') == $status_sensor->id ? 'selected' : '' }}>
+                                {{ $status_sensor->mac_sensor }}
                             </option>
                         @endforeach
                     </select>

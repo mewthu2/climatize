@@ -22,8 +22,6 @@ class Freezer extends Model
      * @var array
      */
     protected $fillable = [
-        'id_equipamento',
-        'mac_sensor',
         'nome_unidade',
         'referencia',
         'detalhe',
@@ -31,7 +29,8 @@ class Freezer extends Model
         'etiqueta_ident',
         'limite_neg',
         'limite_pos',
-        'cad_cliente_id'
+        'cad_cliente_id',
+        'status_sensor_id'
     ];
 
     /**
@@ -40,5 +39,13 @@ class Freezer extends Model
     public function cliente()
     {
         return $this->belongsTo(\App\Models\ClienteNovo::class, 'cad_cliente_id');
+    }
+
+    /**
+     * Get the status sensor associated with the freezer.
+     */
+    public function statusSensor()
+    {
+        return $this->belongsTo(\App\Models\StatusSensor::class, 'status_sensor_id');
     }
 }

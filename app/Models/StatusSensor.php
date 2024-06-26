@@ -14,6 +14,8 @@ class StatusSensor extends Model
      *
      * @var array
      */
+    protected $table = 'status_sensors';
+
     protected $fillable = [
         'id_equipamento',
         'mac_sensor',
@@ -29,5 +31,10 @@ class StatusSensor extends Model
     public function cliente()
     {
         return $this->belongsTo(ClienteNovo::class, 'cad_cliente_id');
+    }
+
+    public function freezer()
+    {
+        return $this->hasOne(Freezer::class, 'status_sensor_id');
     }
 }

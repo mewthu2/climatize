@@ -4,37 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Freezer;
 use App\Models\ClienteNovo;
+use App\Models\StatusSensor;
 use Illuminate\Http\Request;
 
 class FreezersController extends Controller
 {
     private $errorMessages = [
-        'id_equipamento.required' => 'O campo ID do Equipamento é obrigatório.',
-        'mac_sensor.required' => 'O campo Mac Sensor é obrigatório.',
+        'status_sensor_id.required' => 'O campo Status Sensor é obrigatório.',
         'nome_unidade.required' => 'O campo Nome Unidade é obrigatório.',
         'referencia.required' => 'O campo Referência é obrigatório.',
         'detalhe.required' => 'O campo Detalhe é obrigatório.',
         'setpoint.required' => 'O campo Setpoint é obrigatório.',
         'etiqueta_ident.required' => 'O campo Etiqueta Ident é obrigatório.',
         'limite_neg.required' => 'O campo Limite Neg é obrigatório.',
-        'limite_pos.required' => 'O campo Limite Pos é obrigatório.',
-        'cad_cliente_id.required' => 'O campo Cliente é obrigatório.',
-        'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
+        'limite_pos.required' => 'O campo Limite Pos é obrigatório.'
     ];
 
     private function validate_params(Request $request)
     {
         return $request->validate([
-            'id_equipamento' => 'required',
-            'mac_sensor' => 'required',
+            'status_sensor_id' => 'required|exists:status_sensors,id',
             'nome_unidade' => 'required',
             'referencia' => 'required',
             'detalhe' => 'required',
             'setpoint' => 'required',
             'etiqueta_ident' => 'required',
             'limite_neg' => 'required',
-            'limite_pos' => 'required',
-            'cad_cliente_id' => 'required|exists:cad_clientes,id',
+            'limite_pos' => 'required'
         ], $this->errorMessages);
     }
 
@@ -46,8 +42,6 @@ class FreezersController extends Controller
             if ($request->has('search')) {
                 $search = $request->input('search');
                 $query->where('id_equipamento', 'like', "%{$search}%")
-                    ->orWhere('mac_sensor', 'like', "%{$search}%")
-                    ->orWhere('nome_unidade', 'like', "%{$search}%")
                     ->orWhere('referencia', 'like', "%{$search}%")
                     ->orWhere('detalhe', 'like', "%{$search}%")
                     ->orWhere('etiqueta_ident', 'like', "%{$search}%");
@@ -65,8 +59,11 @@ class FreezersController extends Controller
     {
         try {
             $all_clients = ClienteNovo::all();
+            $status_sensors = StatusSensor::whereDoesntHave('freezer')
+                                          ->where('status', '!=', 'I')
+                                          ->get();
 
-            return view('freezers.create', compact('all_clients'));
+            return view('freezers.create', compact('all_clients', 'status_sensors'));
         } catch (\Exception $e) {
             return back()->with('error', 'Erro ao exibir o formulário de criação: ' . $e->getMessage());
         }
@@ -90,9 +87,12 @@ class FreezersController extends Controller
     {
         try {
             $all_clients = ClienteNovo::all();
+            $status_sensors = StatusSensor::whereDoesntHave('freezer')
+                                          ->where('status', '!=', 'I')
+                                          ->get();
             $freezer = Freezer::findOrFail($id);
 
-            return view('freezers.edit', compact('freezer', 'all_clients'));
+            return view('freezers.edit', compact('freezer', 'all_clients', 'status_sensors'));
         } catch (\Exception $e) {
             return back()->with('error', 'Erro ao exibir o formulário de edição: ' . $e->getMessage());
         }
@@ -126,4 +126,3 @@ class FreezersController extends Controller
         }
     }    
 }
-        

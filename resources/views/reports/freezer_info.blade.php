@@ -5,13 +5,13 @@
         </h5>
     </x-slot>
 
-    <div class="container mx-auto mt-2 px-4 py-4 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-        <div class="px-4 py-4 grid grid-cols-1 gap-1 mt-2">
-            <div class="grid grid-cols-4 gap-1">
-                <div class="text-xs lg:py-3 lg:px-4 lg:pe-9 col-span-1">
-                    Selecione o sensor:
+    <div class="container mx-auto sm:p-6 sm:rounded-tl-md sm:rounded-tr-md">
+        <div class="mx-auto px-4 py-4 grid grid-cols-1 gap-1 bg-gray-600 rounded-lg mr-4 ml-4">
+            <div class="grid grid-cols-4 lg:py-3 gap-1 column-filter">
+                <div class="text-sm px-4 pe-9 col-span-1 text-white">
+                    Selecione o freezer:
                 </div>
-                <select id="select_freezer" class="lg:py-3 lg:px-4 lg:pe-9 col-span-3
+                <select id="select_freezer" class="py-3 px-4 pe-9 col-span-3
                   block w-full border-gray-200 rounded-lg 
                   text-sm focus:border-blue-500 focus:ring-blue-500 
                   disabled:opacity-50 disabled:pointer-events-none dark:white-slate-900
@@ -22,11 +22,11 @@
                 </select>
             </div>
         </div>
-        <div class="px-4 grid grid-cols-4 mt-2 gap-1 bg-gray-500 rounded-lg" id="button_container">
-            <div class="text-xs py-3 lg:py-3 lg:px-4 lg:pe-9 col-span-1">
+        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg" id="button_container">
+            <div class="text-sm lg:py-3 col-span-1">
                 <span class="text-white"><i class="far fa-clock"></i> Intervalo de tempo:</span>
             </div>
-            <div class="py-3 col-span-3">
+            <div class="col-span-3 px-4 py-4">
                 <x-primary-button class="interval-button" value="24">24h</x-primary-button>
                 <x-primary-button class="interval-button" value="12">12h</x-primary-button>
                 <x-primary-button class="interval-button" value="6">6h</x-primary-button>
@@ -228,5 +228,25 @@
         background: black;
         border-radius: 10px;
     }
-    
+    #button_container {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .column-filter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #select_freezer {
+        width: 300px;
+    }
 </style>

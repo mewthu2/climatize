@@ -24,62 +24,78 @@
             @csrf
             @method('PUT')
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div>
-                    <x-label class="text-white" for="id_equipamento" :value="__('ID do Equipamento *')" />
-                    <x-input id="id_equipamento" class="mt-1 w-full" type="text" name="id_equipamento" :value="old('id_equipamento', $freezer->id_equipamento)" required autofocus />
-                </div>
 
-                <div>
-                    <x-label class="text-white" for="mac_sensor" :value="__('Mac Sensor *')" />
-                    <x-input id="mac_sensor" class="mt-1 w-full" type="text" name="mac_sensor" :value="old('mac_sensor', $freezer->mac_sensor)" required />
-                </div>
+            <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4 mb-2">
+                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa fa-user"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Dados vinculação usuário</span></h1>
 
-                <div>
-                    <x-label class="text-white" for="nome_unidade" :value="__('Nome Unidade *')" />
-                    <x-input id="nome_unidade" class="mt-1 w-full" type="text" name="nome_unidade" :value="old('nome_unidade', $freezer->nome_unidade)" required />
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
+                    <div>
+                        <x-label class="text-white" for="cad_cliente_id" :value="__('* Cliente:')" />
+                        <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
+                            @foreach($all_clients as $client)
+                                <option value="{{ $client->id }}" {{ old('cad_cliente_id', $freezer->cad_cliente_id) == $client->id ? 'selected' : '' }}>
+                                    {{ $client->nome }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <div>
-                    <x-label class="text-white" for="referencia" :value="__('Referência *')" />
-                    <x-input id="referencia" class="mt-1 w-full" type="text" name="referencia" :value="old('referencia', $freezer->referencia)" required />
+                    <div>
+                        <x-label class="text-white" for="status_sensor_id" :value="__('Sensor *')" />
+                        <select id="status_sensor_id" name="status_sensor_id" class="mt-1 w-full form-select" required>
+                            @foreach($status_sensors as $status_sensor)
+                                <option value="{{ $status_sensor->id }}" {{ ($freezer->statusSensor->id == $status_sensor->id) ? 'selected' : '' }}>
+                                    {{ $status_sensor->mac_sensor }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>                
                 </div>
+            </div>
 
-                <div>
-                    <x-label class="text-white" for="detalhe" :value="__('Detalhe *')" />
-                    <x-input id="detalhe" class="mt-1 w-full" type="text" name="detalhe" :value="old('detalhe', $freezer->detalhe)" required />
+            <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4">
+                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-code-branch"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Dados visualização freezer</span></h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                        <x-label class="text-white" for="nome_unidade" :value="__('Nome Unidade *')" />
+                        <x-input id="nome_unidade" class="mt-1 w-full" type="text" name="nome_unidade" :value="old('nome_unidade', $freezer->nome_unidade)" required />
+                    </div>
+
+                    <div>
+                        <x-label class="text-white" for="referencia" :value="__('Referência *')" />
+                        <x-input id="referencia" class="mt-1 w-full" type="text" name="referencia" :value="old('referencia', $freezer->referencia)" required />
+                    </div>
+
+                    <div>
+                        <x-label class="text-white" for="detalhe" :value="__('Detalhe *')" />
+                        <x-input id="detalhe" class="mt-1 w-full" type="text" name="detalhe" :value="old('detalhe', $freezer->detalhe)" required />
+                    </div>       
+                    <div>
+                        <x-label class="text-white" for="etiqueta_ident" :value="__('Etiqueta Ident *')" />
+                        <x-input id="etiqueta_ident" class="mt-1 w-full" type="text" name="etiqueta_ident" :value="old('etiqueta_ident', $freezer->etiqueta_ident)" required />
+                    </div>
                 </div>
+            </div>
 
-                <div>
-                    <x-label class="text-white" for="setpoint" :value="__('Setpoint *')" />
-                    <x-input id="setpoint" class="mt-1 w-full" type="text" name="setpoint" :value="old('setpoint', $freezer->setpoint)" required />
-                </div>
+            <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4 mt-2">
+                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-gear"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Configuração</span></h1>
 
-                <div>
-                    <x-label class="text-white" for="etiqueta_ident" :value="__('Etiqueta Ident *')" />
-                    <x-input id="etiqueta_ident" class="mt-1 w-full" type="text" name="etiqueta_ident" :value="old('etiqueta_ident', $freezer->etiqueta_ident)" required />
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div>
+                        <x-label class="text-white" for="setpoint" :value="__('Setpoint *')" />
+                        <x-input id="setpoint" class="mt-1 w-full" type="text" name="setpoint" :value="old('setpoint', $freezer->setpoint)" required />
+                    </div>
 
-                <div>
-                    <x-label class="text-white" for="limite_neg" :value="__('Limite Neg *')" />
-                    <x-input id="limite_neg" class="mt-1 w-full" type="text" name="limite_neg" :value="old('limite_neg', $freezer->limite_neg)" required />
-                </div>
+                    <div>
+                        <x-label class="text-white" for="limite_neg" :value="__('Limite Neg *')" />
+                        <x-input id="limite_neg" class="mt-1 w-full" type="text" name="limite_neg" :value="old('limite_neg', $freezer->limite_neg)" required />
+                    </div>
 
-                <div>
-                    <x-label class="text-white" for="limite_pos" :value="__('Limite Pos *')" />
-                    <x-input id="limite_pos" class="mt-1 w-full" type="text" name="limite_pos" :value="old('limite_pos', $freezer->limite_pos)" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="cad_cliente_id" :value="__('* Cliente:')" />
-                    <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
-                        <option value="">{{ __('Selecione um cliente') }}</option>
-                        @foreach($all_clients as $client)
-                            <option value="{{ $client->id }}" {{ old('cad_cliente_id', $freezer->cad_cliente_id) == $client->id ? 'selected' : '' }}>
-                                {{ $client->nome }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <div>
+                        <x-label class="text-white" for="limite_pos" :value="__('Limite Pos *')" />
+                        <x-input id="limite_pos" class="mt-1 w-full" type="text" name="limite_pos" :value="old('limite_pos', $freezer->limite_pos)" required />
+                    </div>
                 </div>
             </div>
 
