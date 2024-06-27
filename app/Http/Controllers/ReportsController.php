@@ -18,12 +18,14 @@ class ReportsController extends Controller
             $cad_freezers = Freezer::where('cad_cliente_id', $cad_usuario->cad_cliente_id)->get();
         }
     
-        $id_equipamento_freezer = $request->input('id_equipamento');
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
-        
-        if ($request->ajax() && $id_equipamento_freezer) {
-            $logs = DatalogSensorSlave::where('id_equipamento', $id_equipamento_freezer)
+
+        if ($request->ajax()) {
+            $freezer = Freezer::where('id', $request->input('id_freezer'))->first();
+            $sensor = $freezer->statusSensor()->first();
+
+            $logs = DatalogSensorSlave::where('mac_sensor', $sensor->mac_sensor)
                 ->whereBetween('dt_leitura', [$start_date, $end_date])
                 ->get()
                 ->groupBy('mac_sensor');

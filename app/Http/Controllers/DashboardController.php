@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\DatalogSensorSlave;
 use App\Models\Degelo;
 use App\Models\Freezer;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {

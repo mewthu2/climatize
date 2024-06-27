@@ -17,7 +17,7 @@
                   disabled:opacity-50 disabled:pointer-events-none dark:white-slate-900
                   dark:border-gray-700 dark:text-dark-400 dark:focus:ring-gray-600">
                     @foreach($cad_freezers as $valor)
-                    <option value="{{ $valor->id_equipamento }}">{{ $valor->etiqueta_ident }}: {{ $valor->referencia }}</option>
+                        <option value="{{ $valor->id }}">{{ $valor->etiqueta_ident }}: {{ $valor->referencia }}</option>
                     @endforeach
                 </select>
             </div>
@@ -27,6 +27,7 @@
                 <span class="text-white"><i class="far fa-clock"></i> Intervalo de tempo:</span>
             </div>
             <div class="col-span-3 px-4 py-4">
+                <x-primary-button class="interval-button" value="168">Últimos 7 dias</x-primary-button>
                 <x-primary-button class="interval-button" value="24">24h</x-primary-button>
                 <x-primary-button class="interval-button" value="12">12h</x-primary-button>
                 <x-primary-button class="interval-button" value="6">6h</x-primary-button>
@@ -57,7 +58,7 @@
         intervalButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 var intervalo = this.value;
-                var idEquipamento = document.getElementById('select_freezer').value;
+                var idFreezer = document.getElementById('select_freezer').value;
 
                 var endDate = new Date();
                 var startDate = new Date();
@@ -71,7 +72,7 @@
 
                 axios.get('/reports/freezer_info', {
                         params: {
-                            id_equipamento: idEquipamento,
+                            id_freezer: idFreezer,
                             start_date: formattedStartDate,
                             end_date: formattedEndDate
                         },
