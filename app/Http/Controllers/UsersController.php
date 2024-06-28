@@ -50,6 +50,11 @@ class UsersController extends Controller
     {
         try {
             $validatedData = $this->validate_params($request);
+            
+            if (isset($validatedData['password'])) {
+                $validatedData['password'] = bcrypt($validatedData['password']);
+            }
+
             User::create($validatedData);
 
             return redirect()->route('users')->with('success', 'Usuário criado com sucesso!');
@@ -59,6 +64,7 @@ class UsersController extends Controller
             return back()->with('error', 'Erro ao criar usuário: ' . $e->getMessage())->withInput();
         }
     }
+
 
     public function edit($id)
     {
@@ -73,8 +79,13 @@ class UsersController extends Controller
         try {
             $validatedData = $this->validate_params($request);
             $user = User::findOrFail($id);
+    
+            if (isset($validatedData['password'])) {
+                $validatedData['password'] = bcrypt($validatedData['password']);
+            }
+    
             $user->update($validatedData);
-
+    
             return redirect()->route('users')->with('success', 'Usuário atualizado com sucesso!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput();

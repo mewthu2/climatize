@@ -10,7 +10,6 @@ class SensoresController extends Controller
 {
     private $errorMessages = [
         'id_equipamento.required' => 'O campo ID do Equipamento é obrigatório.',
-        'mac_sensor.required' => 'O campo Mac Sensor é obrigatório.',
         'status.required' => 'O campo Status é obrigatório.',
         'ip_cliente.required' => 'O campo IP Cliente é obrigatório.',
         'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
@@ -20,7 +19,6 @@ class SensoresController extends Controller
     {
         return $request->validate([
             'id_equipamento' => 'required',
-            'mac_sensor' => 'required',
             'status' => 'required',
             'ip_cliente' => 'required',
             'cad_cliente_id' => 'nullable|exists:cad_clientes,id'

@@ -53,15 +53,14 @@
                     <thead>
                         <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                             <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
-                            <th class="px-6 py-3 border border-gray-300">ID Equipamento</th>
-                            <th class="px-6 py-3 border border-gray-300">Mac Sensor</th>
+                            <th class="px-6 py-3 border border-gray-300">Equipamento</th>
+                            <th class="px-6 py-3 border border-gray-300">Sensor</th>
+                            <th class="px-6 py-3 border border-gray-300">Min/Set/Max</th>
                             <th class="px-6 py-3 border border-gray-300">Nome Unidade</th>
                             <th class="px-6 py-3 border border-gray-300">Referência</th>
                             <th class="px-6 py-3 border border-gray-300">Detalhe</th>
                             <th class="px-6 py-3 border border-gray-300">Cliente</th>
-                            <th class="px-6 py-3 border border-gray-300">Setpoint</th>
                             <th class="px-6 py-3 border border-gray-300">Etiqueta Ident</th>
-                            <th class="px-6 py-3 border border-gray-300">Limite Neg</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -71,19 +70,18 @@
                                 <x-primary-button href="{{ route('freezers.edit', $freezer->id) }}">
                                     <span class="font-medium">e</span>
                                 </x-primary-button>                                  
-                                <x-danger-button href="{{ route('freezers.destroy', $freezer->id) }}">
+                                <x-primary-button href="{{ route('freezers.destroy', $freezer->id) }}">
                                     <span class="font-medium">x</span>
-                                </x-danger-button> 
+                                </x-primary-button> 
                             </td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->id_equipamento }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->mac_sensor }}</td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->statusSensor()->first()->id_equipamento }}</td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->statusSensor()->first()->mac_sensor }}</td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border text-center border-gray-300">{{ $freezer->limite_neg }}, {{ $freezer->setpoint }}, {{ $freezer->limite_pos }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->nome_unidade }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->referencia }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->detalhe }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->cliente->nome ?? 'N/A' }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->setpoint }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->etiqueta_ident }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->limite_neg }}</td>
                         </tr>
                         @endforeach
                     </tbody>

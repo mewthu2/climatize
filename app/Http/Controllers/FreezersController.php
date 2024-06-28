@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class FreezersController extends Controller
 {
     private $errorMessages = [
+        'cad_cliente_id.required' => 'O campo Status Sensor é obrigatório.',
         'status_sensor_id.required' => 'O campo Status Sensor é obrigatório.',
         'nome_unidade.required' => 'O campo Nome Unidade é obrigatório.',
         'referencia.required' => 'O campo Referência é obrigatório.',
@@ -24,6 +25,7 @@ class FreezersController extends Controller
     {
         return $request->validate([
             'status_sensor_id' => 'required|exists:status_sensors,id',
+            'cad_cliente_id' => 'required|exists:cad_clientes,id',
             'nome_unidade' => 'required',
             'referencia' => 'required',
             'detalhe' => 'required',
@@ -60,9 +62,9 @@ class FreezersController extends Controller
         try {
             $all_clients = ClienteNovo::all();
             $status_sensors = StatusSensor::whereDoesntHave('freezer')
-                                          ->where('status', '!=', 'I')
-                                          ->get();
-
+                                        ->where('status', '!=', 'I')
+                                        ->where('status', '!=', 'A')
+                                        ->get();
             return view('freezers.create', compact('all_clients', 'status_sensors'));
         } catch (\Exception $e) {
             return back()->with('error', 'Erro ao exibir o formulário de criação: ' . $e->getMessage());
@@ -74,7 +76,12 @@ class FreezersController extends Controller
         try {
             $validatedData = $this->validate_params($request);
             Freezer::create($validatedData);
-        
+            
+            $sensor = StatusSensor::where('id', $validatedData['status_sensor_id'])->first();
+            if ($sensor) {
+                $sensor->update(['status' => 'A']);
+            }
+
             return redirect()->route('freezers')->with('success', 'Freezer criado com sucesso!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput();
@@ -83,12 +90,14 @@ class FreezersController extends Controller
         }
     }
 
+
     public function edit($id)
     {
         try {
             $all_clients = ClienteNovo::all();
             $status_sensors = StatusSensor::whereDoesntHave('freezer')
                                           ->where('status', '!=', 'I')
+                                          ->where('status', '!=', 'A')
                                           ->get();
             $freezer = Freezer::findOrFail($id);
 

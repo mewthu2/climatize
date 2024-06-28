@@ -33,8 +33,8 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="mac_sensor" :value="__('Mac Sensor *')" />
-                    <x-input id="mac_sensor" class="mt-1 w-full" type="text" name="mac_sensor" value="{{ $sensor->mac_sensor }}" required />
+                    <x-label class="text-white" for="mac_sensor" :value="__('Mac Sensor')" />
+                    <x-input id="mac_sensor" class="mt-1 w-full" type="text" name="mac_sensor" value="{{ $sensor->mac_sensor }}" disabled />
                 </div>
 
                 <div>
@@ -42,6 +42,7 @@
                     <select id="status" name="status" class="mt-1 w-full border-gray-300 rounded-md shadow-sm" required>
                         <option value="A" {{ $sensor->status == 'A' ? 'selected' : '' }}>A</option>
                         <option value="C" {{ $sensor->status == 'C' ? 'selected' : '' }}>C</option>
+                        <option value="C" {{ $sensor->status == 'I' ? 'selected' : '' }}>I</option>
                     </select>
                 </div>
 
