@@ -5,36 +5,62 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StatusSensor extends Model
+class Freezer extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $table = 'status_sensors';
-
     protected $fillable = [
-        'id_equipamento',
-        'mac_sensor',
-        'status',
-        'ip_cliente',
-        'offset',
         'cad_cliente_id',
+        'status_sensor_id',
+        'nome_unidade',
+        'referencia',
+        'detalhe',
+        'etiqueta_ident',
+        'setpoint',
+        'limite_neg',
+        'limite_pos',
     ];
 
     /**
-     * Get the client associated with the sensor status.
+     * Get the sensor status associated with the freezer.
      */
-    public function cliente()
+    public function statusSensor()
     {
-        return $this->belongsTo(ClienteNovo::class, 'cad_cliente_id');
+        return $this->belongsTo(StatusSensor::class, 'status_sensor_id');
     }
 
-    public function freezer()
+    protected static function boot()
     {
-        return $this->hasOne(Freezer::class, 'status_sensor_id');
+        parent::boot();
+
+        static::created(function ($freezer) {
+            $freezer->updateSensorStatus();
+        });
+
+        static::updated(function ($freezer) {
+            $freezer->updateSensorStatus();
+        });
+
+        static::deleted(function ($freezer) {
+            $freezer->resetSensorStatus();
+        });
+    }
+
+    public function updateSensorStatus()
+    {
+        if ($this->status_sensor_id) {
+            $sensor = $this->statusSensor;
+            $sensor->status = 'A';
+            $sensor->save();
+        }
+    }
+
+    public function resetSensorStatus()
+    {
+        if ($this->status_sensor_id) {
+            $sensor = $this->statusSensor;
+            $sensor->status = 'C';
+            $sensor->save();
+        }
     }
 }

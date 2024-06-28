@@ -76,11 +76,6 @@ class FreezersController extends Controller
         try {
             $validatedData = $this->validate_params($request);
             Freezer::create($validatedData);
-            
-            $sensor = StatusSensor::where('id', $validatedData['status_sensor_id'])->first();
-            if ($sensor) {
-                $sensor->update(['status' => 'A']);
-            }
 
             return redirect()->route('freezers')->with('success', 'Freezer criado com sucesso!');
         } catch (\Illuminate\Validation\ValidationException $e) {
