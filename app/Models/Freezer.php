@@ -9,6 +9,8 @@ class Freezer extends Model
 {
     use HasFactory;
 
+    protected $table = 'cad_freezers';
+
     protected $fillable = [
         'cad_cliente_id',
         'status_sensor_id',
