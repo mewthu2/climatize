@@ -109,8 +109,8 @@
     
                             <div class="border-t border-gray-200"></div>
     
-                            <x-dropdown-link href="{{ route('freezer_info') }}">
-                                {{ __('Gráficos por Freezers') }}
+                            <x-dropdown-link href="{{ route('daily_freezer_info') }}">
+                                {{ __('Gráficos por Freezers - Diário') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -307,7 +307,7 @@
 
             <div class="border-t border-gray-500"></div>
 
-            <x-responsive-nav-link href="{{ route('freezer_info') }}" :active="request()->routeIs('freezer_info')">
+            <x-responsive-nav-link href="{{ route('daily_freezer_info') }}" :active="request()->routeIs('daily_freezer_info')">
                 {{ __('Gráficos por Freezers') }}
             </x-responsive-nav-link>
         </div>

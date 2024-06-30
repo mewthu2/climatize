@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
-            <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers') }}
+            <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers - Diário') }}
         </h5>
     </x-slot>
 
@@ -27,7 +27,6 @@
                 <span class="text-white"><i class="far fa-clock"></i> Intervalo de tempo:</span>
             </div>
             <div class="col-span-3 px-4 py-4">
-                <x-primary-button class="interval-button" value="168">Últimos 7 dias</x-primary-button>
                 <x-primary-button class="interval-button" value="24">24h</x-primary-button>
                 <x-primary-button class="interval-button" value="12">12h</x-primary-button>
                 <x-primary-button class="interval-button" value="6">6h</x-primary-button>
@@ -70,7 +69,7 @@
                 toggleElementVisibility('loading_status');
                 toggleElementVisibility('chart');
 
-                axios.get('/reports/freezer_info', {
+                axios.get('/reports/daily_freezer_info', {
                         params: {
                             id_freezer: idFreezer,
                             start_date: formattedStartDate,
@@ -183,7 +182,10 @@
                 type: 'datetime',
                 labels: {
                     formatter: function (val) {
-                        return new Date(val).toLocaleTimeString('pt-BR', {
+                        return new Date(val).toLocaleString('pt-BR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
                             hour: '2-digit',
                             minute: '2-digit',
                             hour12: false
@@ -222,6 +224,7 @@
         }
     }
 </script>
+
 
 <style>
     .apexcharts-canvas {

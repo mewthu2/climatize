@@ -6,7 +6,6 @@ use App\Http\Controllers\ContatosController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\EquipamentosController;
 use App\Http\Controllers\SensoresController;
-use App\Http\Controllers\PanelTemperaturasController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -17,7 +16,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('/reports')->group(function () {
-        Route::get('/freezer_info', [ReportsController::class, 'freezer_info'])->name('freezer_info');
+        Route::get('/daily_freezer_info', [ReportsController::class, 'daily_freezer_info'])->name('daily_freezer_info');
     });
 
     Route::prefix('/usuarios')->group(function () {
