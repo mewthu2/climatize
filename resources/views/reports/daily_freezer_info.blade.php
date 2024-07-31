@@ -82,8 +82,8 @@
                     .then(function (response) {
                         toggleElementVisibility('loading_status');
                         toggleElementVisibility('chart');
-                        console.log(response.data);
-                        renderChart(response.data);
+
+                        renderChart(response.data.logs);
                     })
                     .catch(function (error) {
                         toggleElementVisibility('loading_status');

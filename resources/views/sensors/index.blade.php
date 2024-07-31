@@ -68,9 +68,9 @@
                                 <x-primary-button href="{{ route('sensors.edit', $sensor->id) }}">
                                     <span class="font-medium">e</span>
                                 </x-primary-button>
-                                <x-danger-button href="{{ route('sensors.destroy', $sensor->id) }}">
+                                <x-primary-button href="{{ route('sensors.destroy', $sensor->id) }}">
                                     <span class="font-medium">x</span>
-                                </x-danger-button>
+                                </x-primary-button>
                             </td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->id }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->cliente->nome ?? 'N/A' }}</td>

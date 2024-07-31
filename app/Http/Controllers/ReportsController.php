@@ -19,7 +19,6 @@ class ReportsController extends Controller
         }
 
         $start_date = $request->input('start_date');
-
         $end_date = $request->input('end_date');
 
         if ($request->ajax()) {
@@ -33,7 +32,10 @@ class ReportsController extends Controller
                     ->get()
                     ->groupBy('mac_sensor');
 
-                return response()->json($logs);
+                return response()->json([
+                    'logs' => $logs,
+                    'freezer' => $freezer
+                ]);
             } else {
                 return response()->json('Sensor não encontrado');
             }
