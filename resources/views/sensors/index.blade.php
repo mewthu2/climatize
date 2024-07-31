@@ -59,6 +59,7 @@
                             <th class="px-6 py-3 border border-gray-300">Mac Sensor</th>
                             <th class="px-6 py-3 border border-gray-300">Status</th>
                             <th class="px-6 py-3 border border-gray-300">IP Cliente</th>
+                            <th class="px-6 py-3 border border-gray-300">Criado em</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -78,6 +79,7 @@
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->mac_sensor }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300 text-center">{{ $sensor->status }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->ip_cliente }}</td>
+                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->created_at }}</td>
                         </tr>
                         @endforeach
                     </tbody>
