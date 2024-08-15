@@ -53,6 +53,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var intervalButtons = document.querySelectorAll('.interval-button');
+        var chartInstance = null;
 
         intervalButtons.forEach(function (button) {
             button.addEventListener('click', function () {
@@ -69,6 +70,10 @@
                 toggleElementVisibility('loading_status');
                 toggleElementVisibility('chart');
 
+                if (chartInstance && typeof chartInstance.destroy === 'function') {
+                    chartInstance.destroy(); // Destroi o gráfico anterior antes de criar um novo
+                }
+
                 axios.get('/reports/daily_freezer_info', {
                         params: {
                             id_freezer: idFreezer,
@@ -83,7 +88,7 @@
                         toggleElementVisibility('loading_status');
                         toggleElementVisibility('chart');
 
-                        renderChart(response.data.logs);
+                        chartInstance = renderChart(response.data.logs);
                     })
                     .catch(function (error) {
                         toggleElementVisibility('loading_status');
@@ -167,63 +172,57 @@
             },
             yaxis: {
                 title: {
-                    text: 'Temperatura',
+                    text: 'Temperatura (°C)',
                     style: {
                         color: '#ffffff'
-                    }
-                },
-                labels: {
-                    style: {
-                        colors: '#ffffff'
                     }
                 }
             },
             xaxis: {
                 type: 'datetime',
                 labels: {
-                    formatter: function (val) {
-                        return new Date(val).toLocaleString('pt-BR', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        });
-                    },
-                    style: {
-                        colors: '#ffffff'
-                    }
+                    datetimeUTC: false
                 },
-                tickAmount: 10,
-                tickPlacement: 'between'
+                title: {
+                    text: 'Data e Hora',
+                    style: {
+                        color: '#ffffff'
+                    }
+                }
             },
             tooltip: {
                 shared: false,
-                theme: 'dark'
-            },
-            legend: {
-                position: 'bottom',
-                labels: {
-                    colors: '#ffffff'
+                theme: 'dark',
+                style: {
+                    color: '#ffffff'
+                },
+                x: {
+                    show: true,
+                    format: 'dd MMM - HH:mm'
                 }
             },
-            colors: colors
+            grid: {
+                borderColor: '#555',
+                strokeDashArray: 3,
+                xaxis: {
+                    lines: {
+                        show: true
+                    }
+                }
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
+        return chart;
     }
 
     function toggleElementVisibility(id) {
         var element = document.getElementById(id);
-        if (element.style.display === 'none') {
-            element.style.display = 'block';
-        } else {
-            element.style.display = 'none';
-        }
+        element.style.display = (element.style.display === "none") ? "block" : "none";
     }
 </script>
+
 
 
 <style>
