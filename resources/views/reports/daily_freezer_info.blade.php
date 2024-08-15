@@ -197,15 +197,16 @@
                     color: '#ffffff'
                 },
                 x: {
-                    show: false
+                    show: false,
+                    format: 'dd MMM yyyy HH:mm' // Define o formato para mostrar dia, mês, ano, hora e minuto
                 },
                 y: {
                     formatter: function(value) {
-                        return value.toFixed(2) + ' °C';
+                        return value.toFixed(2) + ' °C'; // Mostra apenas a temperatura no tooltip
                     },
                     title: {
                         formatter: function () {
-                            return '';
+                            return ''; // Oculta o nome do sensor
                         }
                     }
                 }
