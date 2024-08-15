@@ -7,19 +7,19 @@
     <section class="container mx-auto py-2 px-2 rounded-lg grid lg:grid-cols-4 gap-1 sm:grid-cols-1">
         @foreach($freezers as $freezer)
             <div class="mb-2 mx-auto sm:px-2 lg:px-2">
-                <div class="p-2 border rounded-t-xl border-gray-600 bg-gray-700">
+                <div class="p-2 border rounded-t-xl border-gray-600 bg-gray-600">
                     <div class="grid grid-cols-1">
                       
                     <div class="items-center justify-center col-span-1 space-x-2 flex">
-                        <button class="flex items-center justify-center w-9 h-9 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-full-view hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        <button class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-full-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700">
                             <i class="fa fa-chart-simple"></i>
                         </button>
                         
-                        <button class="flex items-center justify-center w-9 h-9 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-tablet-view hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        <button class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-tablet-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white">
                             <i class="fa fa-gear"></i>
                         </button>
 
-                        <button  class="flex items-center justify-center w-9 h-9 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-mobile-view hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        <button  class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-mobile-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700">
                             <i class="fa fa-bell"></i>
                          </button>
                       
@@ -31,9 +31,9 @@
                     <div class="p-2">
                         <div class="max-w-lg">
                             <div class="text-center rounded-lg" style="background: #36384f;">
-                                <h5 class="mb-2 text-sm font-xs tracking-tight text-gray-500 dark:text-white">{{ $freezer->etiqueta_ident }} <span style="font-size: 12px !important;"><i class="far fa-clock"></i>  {{ $freezer->dt_leitura }} </span>
+                                <h5 class="mb-2 text-sm font-xs tracking-tight text-green-600">{{ $freezer->etiqueta_ident }} <span class="text-gray-200" style="font-size: 12px !important;"><i class="far fa-clock"></i>  {{ $freezer->dt_leitura }} </span>
                                     @if($freezer->estaEmDegelo)
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Em degelo</span>
+                                        <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded bg-blue-900 text-blue-300">Em degelo</span>
                                     @endif
                                 </h5>
                             </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-2 border border-gray-200 bg-gray-50 rounded-b-xl dark:border-gray-600 dark:bg-gray-700">
+                <div class="p-2 border rounded-b-xl border-gray-600 bg-gray-600">
                     <div class="grid grid-cols-3 gap-3 mt-2 text-center set-temp-col">
                         <span class="text-dark flex text-xs">
                             <svg class="w-4 h-4 animate-pulse text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

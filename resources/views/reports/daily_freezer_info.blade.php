@@ -71,7 +71,7 @@
                 toggleElementVisibility('chart');
 
                 if (chartInstance && typeof chartInstance.destroy === 'function') {
-                    chartInstance.destroy();
+                    chartInstance.destroy(); // Destroi o gráfico anterior antes de criar um novo
                 }
 
                 axios.get('/reports/daily_freezer_info', {
@@ -105,7 +105,6 @@
 
         for (var mac_sensor in data) {
             if (data.hasOwnProperty(mac_sensor)) {
-
                 var sensorData = data[mac_sensor];
                 var sensorSeries = {
                     name: mac_sensor,
@@ -147,10 +146,10 @@
                 enabled: false
             },
             markers: {
-                size: 2,
+                size: 0,
                 strokeWidth: 0,
                 hover: {
-                    sizeOffset: 3
+                    sizeOffset: 0
                 }
             },
             title: {
@@ -199,7 +198,17 @@
                 },
                 x: {
                     show: true,
-                    format: 'dd MMM - HH:mm'
+                    format: 'dd MMM yyyy HH:mm'
+                },
+                y: {
+                    formatter: function(value) {
+                        return value.toFixed(2) + ' °C';
+                    },
+                    title: {
+                        formatter: function () {
+                            return '';
+                        }
+                    }
                 }
             },
             grid: {
