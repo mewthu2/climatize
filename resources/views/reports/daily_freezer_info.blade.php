@@ -146,10 +146,10 @@
                 enabled: false
             },
             markers: {
-                size: 2,
+                size: 0,
                 strokeWidth: 0,
                 hover: {
-                    sizeOffset: 3
+                    sizeOffset: 0
                 }
             },
             title: {
@@ -197,8 +197,17 @@
                     color: '#ffffff'
                 },
                 x: {
-                    show: true,
-                    format: 'dd MMM - HH:mm'
+                    show: false
+                },
+                y: {
+                    formatter: function(value) {
+                        return value.toFixed(2) + ' °C';
+                    },
+                    title: {
+                        formatter: function () {
+                            return '';
+                        }
+                    }
                 }
             },
             grid: {
@@ -222,8 +231,6 @@
         element.style.display = (element.style.display === "none") ? "block" : "none";
     }
 </script>
-
-
 
 <style>
     .apexcharts-canvas {
