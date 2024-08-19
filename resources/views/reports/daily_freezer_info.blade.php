@@ -87,8 +87,8 @@
                     .then(function (response) {
                         toggleElementVisibility('loading_status');
                         toggleElementVisibility('chart');
-
-                        chartInstance = renderChart(response.data.logs);
+                        console.log(response);
+                        chartInstance = renderChart(response.data.logs, response.data.freezer);
                     })
                     .catch(function (error) {
                         toggleElementVisibility('loading_status');
@@ -98,7 +98,7 @@
         });
     });
 
-    function renderChart(data) {
+    function renderChart(data, freezer) {
         var series = [];
         var colors = ["#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF"];
         var colorIndex = 0;
@@ -219,6 +219,46 @@
                         show: true
                     }
                 }
+            },
+            annotations: {
+                yaxis: [
+                    {
+                        y: freezer.limite_pos,
+                        borderColor: '#0000FF',
+                        label: {
+                            borderColor: '#0000FF',
+                            style: {
+                                color: '#000',
+                                background: '#0000FF'
+                            },
+                            text: 'Limite Positivo: ' + freezer.limite_pos
+                        }
+                    },
+                    {
+                        y: freezer.limite_neg,
+                        borderColor: '#FF0000',
+                        label: {
+                            borderColor: '#FF0000',
+                            style: {
+                                color: '#000',
+                                background: '#FF0000'
+                            },
+                            text: 'Limite Negativo: ' + freezer.limite_neg
+                        }
+                    },
+                    {
+                        y: freezer.setpoint,
+                        borderColor: '#00FF00',
+                        label: {
+                            borderColor: '#00FF00',
+                            style: {
+                                color: '#000',
+                                background: '#00FF00'
+                            },
+                            text: 'Set Point: ' + freezer.setpoint
+                        }
+                    }
+                ]
             }
         };
 
@@ -226,6 +266,7 @@
         chart.render();
         return chart;
     }
+
 
     function toggleElementVisibility(id) {
         var element = document.getElementById(id);
