@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
-            <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers - Diário') }}
+            <i class="fa-solid fa-chart-simple"></i> {{ __('Gráficos por Freezers') }}
         </h5>
     </x-slot>
 
@@ -22,18 +22,25 @@
                 </select>
             </div>
         </div>
-        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg" id="button_container">
-            <div class="text-sm lg:py-3 col-span-1">
-                <span class="text-white"><i class="far fa-clock"></i> Intervalo de tempo:</span>
-            </div>
-            <div class="col-span-3 px-4 py-4">
-                <x-primary-button class="interval-button" value="24">24h</x-primary-button>
-                <x-primary-button class="interval-button" value="12">12h</x-primary-button>
-                <x-primary-button class="interval-button" value="6">6h</x-primary-button>
-            </div>
-            <div id="chart"></div>
-        </div>
+        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg" id="button_container">            
+            <div class="col-span-3 px-4 py-4 flex items-center gap-4">
+                <span class="text-white text-sm"><i class="far fa-clock "></i> Intervalo de tempo:</span>
+                <div class="flex flex-col">
+                    <label for="start_date" class="text-gray-400 text-sm">Data de Início:</label>
+                    <input type="date" id="start_date" name="start_date" class="p-2 rounded-md">
+                </div>
+        
+                <div class="flex flex-col">
+                    <label for="end_date" class="text-gray-400 text-sm">Data de Fim:</label>
+                    <input type="date" id="end_date" name="end_date" class="p-2 rounded-md">
+                </div>
+        
+                <x-primary-button id="search_button" class="ml-2 mt-2">Pesquisar</x-primary-button>
 
+            </div>
+            <div id="chart" class="col-span-4 mt-4"></div>
+        </div>        
+        
         <div class="px-4 py-4 grid grid-cols-3 gap-2">
             <div id="loading_status" role="status" style="
                                   position: fixed;
@@ -52,51 +59,70 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var intervalButtons = document.querySelectorAll('.interval-button');
+        var searchButton = document.getElementById('search_button');
         var chartInstance = null;
 
-        intervalButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var intervalo = this.value;
-                var idFreezer = document.getElementById('select_freezer').value;
+        function formatDate(date) {
+            return date.toISOString();
+        }
 
-                var endDate = new Date();
-                var startDate = new Date();
-                startDate.setHours(endDate.getHours() - intervalo);
+        function getDateRange() {
+            var startDateInput = document.getElementById('start_date');
+            var endDateInput = document.getElementById('end_date');
+            var startDate = new Date(startDateInput.value);
+            var endDate = new Date(endDateInput.value);
+            
+            if (!startDate.getTime() || !endDate.getTime()) {
+                alert('Por favor, selecione as datas de início e fim.');
+                return null;
+            }
+            
+            endDate.setMinutes(endDate.getMinutes() + 1);
 
-                var formattedStartDate = startDate.toISOString();
-                var formattedEndDate = endDate.toISOString();
+            return {
+                startDate: formatDate(startDate),
+                endDate: formatDate(endDate)
+            };
+        }
 
-                toggleElementVisibility('loading_status');
-                toggleElementVisibility('chart');
+        searchButton.addEventListener('click', function () {
+            var idFreezer = document.getElementById('select_freezer').value;
+            var dateRange = getDateRange();
 
-                if (chartInstance && typeof chartInstance.destroy === 'function') {
-                    chartInstance.destroy(); // Destroi o gráfico anterior antes de criar um novo
-                }
+            if (!dateRange) return;
 
-                axios.get('/reports/daily_freezer_info', {
-                        params: {
-                            id_freezer: idFreezer,
-                            start_date: formattedStartDate,
-                            end_date: formattedEndDate
-                        },
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                    .then(function (response) {
-                        toggleElementVisibility('loading_status');
-                        toggleElementVisibility('chart');
-                        console.log(response);
-                        chartInstance = renderChart(response.data.logs, response.data.freezer);
-                    })
-                    .catch(function (error) {
-                        toggleElementVisibility('loading_status');
-                        console.error(error);
-                    });
-            });
+            var { startDate, endDate } = dateRange;
+
+            toggleElementVisibility('loading_status');
+            toggleElementVisibility('chart');
+
+            if (chartInstance && typeof chartInstance.destroy === 'function') {
+                chartInstance.destroy();
+            }
+
+            axios.get('/reports/daily_freezer_info', {
+                    params: {
+                        id_freezer: idFreezer,
+                        start_date: startDate,
+                        end_date: endDate
+                    },
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(function (response) {
+                    toggleElementVisibility('loading_status');
+                    toggleElementVisibility('chart');
+                    console.log(response);
+                    chartInstance = renderChart(response.data.logs, response.data.freezer);
+                })
+                .catch(function (error) {
+                    toggleElementVisibility('loading_status');
+                    console.error(error);
+                });
         });
     });
+
 
     function renderChart(data, freezer) {
         var series = [];
