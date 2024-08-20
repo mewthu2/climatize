@@ -15,11 +15,11 @@
                             <i class="fa fa-chart-simple"></i>
                         </button>
                         
-                        <button class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-tablet-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white">
-                            <a href="{{ route('freezers.edit', ['id' => $freezer->id]) }}" target="_blank">
-                                <i class="fa fa-gear"></i>
-                            </a>                                                                                
-                        </button>
+                        <a href="{{ route('freezers.edit', ['id' => $freezer->id]) }}" target="_blank">
+                            <button class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-tablet-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white">
+                                <i class="fa fa-gear"></i>                                                                             
+                            </button>
+                        </a>
 
                         <button  class="flex items-center justify-center w-9 h-9 text-xs font-medium rounded-lg toggle-mobile-view focus:z-10 focus:ring-2 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700">
                             <i class="fa fa-bell"></i>
