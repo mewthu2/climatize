@@ -47,9 +47,9 @@
                         <x-label class="text-white mb-4" for="status_sensor_id" :value="__('Sensor *')" />
                         
                         @if($status_sensors->isEmpty())
-                            <span class="text-white">{{ 'Sem sensores livres para modificar, sensor atual:'}}</span>
+                            <span class="text-gray-400 text-sm">{{ 'Sem sensores livres para modificar, sensor atual:'}}</span>
                             <label id="status_sensor_id" class="mt-1 w-full form-select bg-gray-200 cursor-not-allowed">
-                                {{ $freezer->statusSensor->id }}
+                                {{ $freezer->statusSensor->mac_sensor }}
                             </label>
                             <input type="hidden" name="status_sensor_id" value="{{ $freezer->statusSensor->id }}" />
                         @else
