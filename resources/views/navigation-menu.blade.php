@@ -110,7 +110,7 @@
                             <div class="border-t border-gray-200"></div>
     
                             <x-dropdown-link href="{{ route('daily_freezer_info') }}">
-                                {{ __('Gráficos por Freezers - Diário') }}
+                                {{ __('Gráficos por Freezers') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
