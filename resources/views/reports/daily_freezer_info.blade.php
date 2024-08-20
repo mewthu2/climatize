@@ -42,18 +42,22 @@
         </div>        
         
         <div class="px-4 py-4 grid grid-cols-3 gap-2">
-            <div id="loading_status" role="status" style="
-                                  position: fixed;
-                                  left: 43em;
-                                  top: 5em;
-                                  display:none;
-                              ">
+            <div id="loading_status" role="status">
                 <svg aria-hidden="true" class="w-10 h-10 text-gray-200 animate-spin dark:text-gray-200 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"></path>
                     <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"></path>
                 </svg>
             </div>
         </div>
+
+        <div class="px-4 py-4 grid grid-cols-3 gap-2">
+            <div id="done_status" role="status">
+                <svg aria-hidden="true" class="w-10 h-10 text-green-600 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM10 16.17L6.83 13 8.24 11.59 10 13.34l5.76-5.76L18.17 9l-8.17 8.17z" fill="currentColor"></path>
+                </svg>
+            </div>
+        </div>
+        
     </div>
 </x-app-layout>
 
@@ -77,6 +81,11 @@
                 return null;
             }
             
+            if (startDate > endDate) {
+                alert('A data de início não pode ser maior que a data de fim.');
+                return null;
+            }
+            
             endDate.setMinutes(endDate.getMinutes() + 1);
 
             return {
@@ -93,8 +102,8 @@
 
             var { startDate, endDate } = dateRange;
 
-            toggleElementVisibility('loading_status');
-            toggleElementVisibility('chart');
+            toggleElementVisibility('loading_status', true);
+            toggleElementVisibility('chart', false);
 
             if (chartInstance && typeof chartInstance.destroy === 'function') {
                 chartInstance.destroy();
@@ -111,14 +120,18 @@
                     }
                 })
                 .then(function (response) {
-                    toggleElementVisibility('loading_status');
-                    toggleElementVisibility('chart');
-                    console.log(response);
-                    chartInstance = renderChart(response.data.logs, response.data.freezer);
+                    toggleElementVisibility('loading_status', false);
+                    toggleElementVisibility('done_status', true);
+
+                    setTimeout(function() {
+                        toggleElementVisibility('done_status', false);
+                        toggleElementVisibility('chart', true);
+                        chartInstance = renderChart(response.data.logs, response.data.freezer);
+                    }, 2000);
                 })
                 .catch(function (error) {
-                    toggleElementVisibility('loading_status');
-                    console.error(error);
+                    toggleElementVisibility('loading_status', false);
+                    alert('Ocorreu um erro ao buscar os dados.');
                 });
         });
     });
@@ -294,9 +307,11 @@
     }
 
 
-    function toggleElementVisibility(id) {
-        var element = document.getElementById(id);
-        element.style.display = (element.style.display === "none") ? "block" : "none";
+    function toggleElementVisibility(elementId, isVisible) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.style.display = isVisible ? 'block' : 'none';
+        }
     }
 </script>
 
@@ -326,5 +341,25 @@
 
     #select_freezer {
         width: 300px;
+    }
+
+    #loading_status {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 1em;
+        position: fixed;
+        left: 83em;
+        top: 37em;
+        border-radius: 1em;
+        display: none;
+    }
+
+    #done_status {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 1em;
+        position: fixed;
+        left: 83em;
+        top: 37em;
+        border-radius: 1em;
+        display: none;
     }
 </style>

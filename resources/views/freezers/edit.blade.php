@@ -25,7 +25,13 @@
             @method('PUT')
 
             <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4 mb-2">
-                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa fa-user"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Dados vinculação usuário</span></h1>
+                <div class="bg-indigo-900 py-2">
+                    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                        <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><i class="fa fa-user"></i></span>
+                        <span class="font-semibold mr-2 text-left flex-auto">Dados vinculação usuário</span>
+                        <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
                     <div>
@@ -62,7 +68,13 @@
             </div>
 
             <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4">
-                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-code-branch"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Dados visualização freezer</span></h1>
+                <div class="bg-indigo-900 py-2">
+                    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                        <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><i class="fa-solid fa-code-branch"></i></span>
+                        <span class="font-semibold mr-2 text-left flex-auto">Dados visualização freezer</span>
+                        <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div>
@@ -87,7 +99,13 @@
             </div>
 
             <div class="border-gray-400 bg-gray-600 rounded-lg py-4 px-4 mt-2">
-                <h1 class="mb-4 text-x font-extrabold leading-none tracking-tight text-gray-900 dark:text-white"><i class="fa-solid fa-gear"></i> <span class="underline underline-offset-1 decoration-2 decoration-blue-400 dark:decoration-blue-600">Configuração</span></h1>
+                <div class="bg-indigo-900 py-2">
+                    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                        <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><i class="fa-solid fa-gear"></i></span>
+                        <span class="font-semibold mr-2 text-left flex-auto">Configuração</span>
+                        <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     <div>
