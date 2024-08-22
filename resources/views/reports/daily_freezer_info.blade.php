@@ -22,24 +22,26 @@
                 </select>
             </div>
         </div>
-        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg" id="button_container">            
-            <div class="col-span-3 px-4 py-4 flex items-center gap-4">
+        <div class="px-4 grid grid-cols-1 md:grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg button_container">            
+            <div class="col-span-3 px-4 py-4 flex flex-col md:flex-row items-start md:items-center gap-4">
                 <span class="text-white text-sm"><i class="far fa-clock "></i> Intervalo de tempo:</span>
-                <div class="flex flex-col">
+                <div class="flex flex-col w-full md:w-auto">
                     <label for="start_date" class="text-gray-400 text-sm">Data de Início:</label>
                     <input type="date" id="start_date" name="start_date" class="p-2 rounded-md">
                 </div>
         
-                <div class="flex flex-col">
+                <div class="flex flex-col w-full md:w-auto mt-4 md:mt-0">
                     <label for="end_date" class="text-gray-400 text-sm">Data de Fim:</label>
                     <input type="date" id="end_date" name="end_date" class="p-2 rounded-md">
                 </div>
         
-                <x-primary-button id="search_button" class="ml-2 mt-2">Pesquisar</x-primary-button>
-
+                <x-primary-button id="search_button" class="w-full md:w-auto mt-4 md:mt-0">Pesquisar</x-primary-button>
             </div>
+        </div>
+
+        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg"> 
             <div id="chart" class="col-span-4 mt-4"></div>
-        </div>        
+        </div>
         
         <div class="px-4 py-4 grid grid-cols-3 gap-2">
             <div id="loading_status" role="status">
@@ -161,145 +163,137 @@
         }
 
         var options = {
-            series: series,
-            chart: {
-                type: 'line',
-                stacked: false,
-                width: window.innerWidth > 768 ? 1200 : 320,
-                height: window.innerWidth > 768 ? 500 : 400,
-                zoom: {
-                    type: 'x',
-                    enabled: true,
-                    autoScaleYaxis: true
-                },
-                toolbar: {
-                    autoSelected: 'zoom'
-                },
-                foreColor: '#ffffff'
+        series: series,
+        chart: {
+            type: 'line',
+            stacked: false,
+            width: window.innerWidth > 768 ? 1200 : 320,
+            height: window.innerWidth > 768 ? 500 : 400,
+            zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
             },
-            stroke: {
-                width: 1,
-                curve: 'smooth'
+            toolbar: {
+                autoSelected: 'zoom'
             },
-            dataLabels: {
-                enabled: false
-            },
-            markers: {
-                size: 0,
-                strokeWidth: 0,
-                hover: {
-                    sizeOffset: 0
-                }
-            },
-            title: {
-                text: 'Sensores',
-                align: 'left',
-                style: {
-                    color: '#ffffff'
-                }
-            },
-            fill: {
-                type: 'solid',
-                color: '#000000',
-                gradient: {
-                    shadeIntensity: 1,
-                    inverseColors: false,
-                    opacityFrom: 1,
-                    opacityTo: 1,
-                    stops: [0, 90, 100]
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Temperatura (°C)',
-                    style: {
-                        color: '#ffffff'
-                    }
-                }
-            },
-            xaxis: {
-                type: 'datetime',
-                labels: {
-                    datetimeUTC: false
-                },
-                title: {
-                    text: 'Data e Hora',
-                    style: {
-                        color: '#ffffff'
-                    }
-                }
-            },
-            tooltip: {
-                shared: false,
-                theme: 'dark',
-                style: {
-                    color: '#ffffff'
-                },
-                x: {
-                    show: true,
-                    format: 'dd MMM yyyy HH:mm'
-                },
-                y: {
-                    formatter: function(value) {
-                        return value.toFixed(2) + ' °C';
-                    },
-                    title: {
-                        formatter: function () {
-                            return '';
-                        }
-                    }
-                }
-            },
-            grid: {
-                borderColor: '#555',
-                strokeDashArray: 3,
-                xaxis: {
-                    lines: {
-                        show: true
-                    }
-                }
-            },
-            annotations: {
-                yaxis: [
-                    {
-                        y: freezer.limite_pos,
-                        borderColor: '#0000FF',
-                        label: {
-                            borderColor: '#0000FF',
-                            style: {
-                                color: '#000',
-                                background: '#0000FF'
-                            },
-                            text: 'Limite Positivo: ' + freezer.limite_pos
-                        }
-                    },
-                    {
-                        y: freezer.limite_neg,
-                        borderColor: '#FF0000',
-                        label: {
-                            borderColor: '#FF0000',
-                            style: {
-                                color: '#000',
-                                background: '#FF0000'
-                            },
-                            text: 'Limite Negativo: ' + freezer.limite_neg
-                        }
-                    },
-                    {
-                        y: freezer.setpoint,
-                        borderColor: '#00FF00',
-                        label: {
-                            borderColor: '#00FF00',
-                            style: {
-                                color: '#000',
-                                background: '#00FF00'
-                            },
-                            text: 'Set Point: ' + freezer.setpoint
-                        }
-                    }
-                ]
+            foreColor: '#ffffff'
+        },
+        stroke: {
+            width: 2,
+            curve: 'smooth',
+            colors: ['#FFFF00']
+        },
+        dataLabels: {
+            enabled: false
+        },
+        markers: {
+            size: 0,
+            strokeWidth: 0,
+            hover: {
+                sizeOffset: 0
             }
-        };
+        },
+        fill: {
+            type: 'solid',
+            color: '#000000',
+            gradient: {
+                shadeIntensity: 1,
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 90, 100]
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Temperatura (°C)',
+                style: {
+                    color: '#ffffff'
+                }
+            }
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                datetimeUTC: false
+            }
+        },
+        tooltip: {
+            shared: false,
+            theme: 'dark',
+            style: {
+                color: '#ffffff'
+            },
+            x: {
+                show: true,
+                format: 'dd MMM yyyy HH:mm'
+            },
+            y: {
+                formatter: function(value) {
+                    return value.toFixed(2) + ' °C';
+                },
+                title: {
+                    formatter: function () {
+                        return '';
+                    }
+                }
+            }
+        },
+        grid: {
+            borderColor: '#555',
+            strokeDashArray: 3,
+            xaxis: {
+                lines: {
+                    show: true
+                }
+            }
+        },
+        annotations: {
+            yaxis: [
+                {
+                    y: freezer.limite_pos,
+                    borderColor: '#FF0000',
+                    borderWidth: 4,
+                    label: {
+                        borderColor: '#FF0000',
+                        style: {
+                            color: '#000',
+                            background: '#FF0000'
+                        },
+                        text: freezer.limite_pos
+                    }
+                },
+                {
+                    y: freezer.limite_neg,
+                    borderColor: '#0000FF',
+                    borderWidth: 4,
+                    label: {
+                        borderColor: '#0000FF',
+                        style: {
+                            color: '#000',
+                            background: '#0000FF'
+                        },
+                        text: freezer.limite_neg
+                    }
+                },
+                {
+                    y: freezer.setpoint,
+                    borderColor: '#00FF00',
+                    borderWidth: 4,
+                    label: {
+                        borderColor: '#00FF00',
+                        style: {
+                            color: '#000',
+                            background: '#00FF00'
+                        },
+                        text: freezer.setpoint
+                    }
+                }
+            ]
+        }
+    };
+
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
@@ -315,13 +309,28 @@
     }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date();
+        const yesterday = new Date(today);
+
+        yesterday.setDate(today.getDate() - 1);
+
+        const formatDate = (date) => {
+            return date.toISOString().split('T')[0];
+        }
+
+        document.getElementById('start_date').value = formatDate(yesterday);
+        document.getElementById('end_date').value = formatDate(today);
+    });
+</script>
+
 <style>
     .apexcharts-canvas {
-        overflow-y: scroll;
         background: black;
         border-radius: 10px;
     }
-    #button_container {
+    .button_container {
         display: flex;
         align-content: center;
         justify-content: center;

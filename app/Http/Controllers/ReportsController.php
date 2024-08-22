@@ -19,7 +19,7 @@ class ReportsController extends Controller
         }
 
         $start_date = $request->input('start_date');
-        $end_date = $request->input('end_date');
+        $end_date = Carbon::parse($request->input('end_date'))->addDay();
 
         if ($request->ajax()) {
 
@@ -39,10 +39,11 @@ class ReportsController extends Controller
             } else {
                 return response()->json('Sensor não encontrado');
             }
-            
+
         } else {
             return view('reports.daily_freezer_info')->with(compact('cad_freezers'));
         }
     }
 }
+
 
