@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="container mx-auto sm:p-6 sm:rounded-tl-md sm:rounded-tr-md">
-        <div class="mx-auto px-4 py-4 grid grid-cols-1 gap-1 bg-gray-600 rounded-lg mr-4 ml-4">
-            <div class="grid grid-cols-4 lg:py-3 gap-1 column-filter">
+        <div class="mt-2 mx-auto px-4 py-4 grid grid-cols-1 gap-1 bg-gray-600 rounded-lg mr-4 ml-4">
+            <div class="grid grid-cols-4 py-3 gap-1 column-filter">
                 <div class="px-4 pe-9 text-white">
                     <i class="fas fa-columns"></i> Selecione o freezer:
                 </div>
