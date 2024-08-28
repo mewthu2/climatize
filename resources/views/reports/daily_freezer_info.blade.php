@@ -8,8 +8,8 @@
     <div class="container mx-auto sm:p-6 sm:rounded-tl-md sm:rounded-tr-md">
         <div class="mx-auto px-4 py-4 grid grid-cols-1 gap-1 bg-gray-600 rounded-lg mr-4 ml-4">
             <div class="grid grid-cols-4 lg:py-3 gap-1 column-filter">
-                <div class="text-sm px-4 pe-9 col-span-1 text-white">
-                    Selecione o freezer:
+                <div class="px-4 pe-9 text-white">
+                    <i class="fas fa-columns"></i> Selecione o freezer:
                 </div>
                 <select id="select_freezer" class="py-3 px-4 pe-9 col-span-3
                   block w-full border-gray-200 rounded-lg 
@@ -24,7 +24,7 @@
         </div>
         <div class="px-4 grid grid-cols-1 md:grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg button_container">            
             <div class="col-span-3 px-4 py-4 flex flex-col md:flex-row items-start md:items-center gap-4">
-                <span class="text-white text-sm"><i class="far fa-clock "></i> Intervalo de tempo:</span>
+                <span class="text-white px-4 pe-9"><i class="far fa-clock "></i> Intervalo de tempo:</span>
                 <div class="flex flex-col w-full md:w-auto">
                     <label for="start_date" class="text-gray-400 text-sm">Data de Início:</label>
                     <input type="date" id="start_date" name="start_date" class="p-2 rounded-md">
@@ -35,7 +35,7 @@
                     <input type="date" id="end_date" name="end_date" class="p-2 rounded-md">
                 </div>
         
-                <x-primary-button id="search_button" class="w-full md:w-auto mt-4 md:mt-0">Pesquisar</x-primary-button>
+                <x-primary-button id="search_button" class="w-full md:w-auto mt-4">Pesquisar</x-primary-button>
             </div>
         </div>
 
@@ -141,7 +141,7 @@
 
     function renderChart(data, freezer) {
         var series = [];
-        var colors = ["#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF"];
+        var colors = ["#ff6400", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF"];
         var colorIndex = 0;
 
         for (var mac_sensor in data) {
@@ -167,7 +167,7 @@
         chart: {
             type: 'line',
             stacked: false,
-            width: window.innerWidth > 768 ? 1200 : 320,
+            width: window.innerWidth > 768 ? 1170 : 400,
             height: window.innerWidth > 768 ? 500 : 400,
             zoom: {
                 type: 'x',
@@ -175,7 +175,17 @@
                 autoScaleYaxis: true
             },
             toolbar: {
-                autoSelected: 'zoom'
+                show: true,
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true
+                },
+                autoSelected: 'pan'
             },
             foreColor: '#ffffff'
         },
@@ -253,13 +263,13 @@
             yaxis: [
                 {
                     y: freezer.limite_pos,
-                    borderColor: '#FF0000',
+                    borderColor: '#FFA500',
                     borderWidth: 4,
                     label: {
-                        borderColor: '#FF0000',
+                        borderColor: '#FFA500',
                         style: {
                             color: '#000',
-                            background: '#FF0000'
+                            background: '#FFA500'
                         },
                         text: freezer.limite_pos
                     }
@@ -356,18 +366,19 @@
         background-color: rgba(255, 255, 255, 0.7);
         padding: 1em;
         position: fixed;
-        left: 83em;
-        top: 37em;
+        right: 1em;
+        bottom: 1em;
         border-radius: 1em;
         display: none;
     }
+
 
     #done_status {
         background-color: rgba(255, 255, 255, 0.7);
         padding: 1em;
         position: fixed;
-        left: 83em;
-        top: 37em;
+        right: 1em;
+        bottom: 1em;
         border-radius: 1em;
         display: none;
     }
