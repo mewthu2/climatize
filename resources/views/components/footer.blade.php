@@ -1,4 +1,4 @@
-<footer class="text-center text-white text-sm" style="background: #36384f;">
+<footer class="text-center text-white text-sm" style="background: #101431;">
     <div class="bg-black/5 p-6 text-center">
         <a href="{{ route('dashboard') }}">
             <div class="text-center flex justify-center">
