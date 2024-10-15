@@ -27,16 +27,6 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="inscricao_estadual" :value="__('Inscrição Estadual *')" />
-                    <x-input id="inscricao_estadual" class="mt-1 w-full" type="text" name="inscricao_estadual" value="{{ $client->inscricao_estadual }}" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="tipo" :value="__('Tipo *')" />
-                    <x-input id="tipo" class="mt-1 w-full" type="text" name="tipo" value="{{ $client->tipo }}" required />
-                </div>
-
-                <div>
                     <x-label class="text-white" for="endereco" :value="__('Endereço *')" />
                     <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" value="{{ $client->endereco }}" required />
                 </div>
@@ -67,11 +57,6 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cep" :value="__('CEP *')" />
-                    <x-input id="cep" class="mt-1 w-full" type="text" name="cep" value="{{ $client->cep }}" required />
-                </div>
-
-                <div>
                     <x-label class="text-white" for="telefone" :value="__('Telefone *')" />
                     <x-input id="telefone" class="mt-1 w-full" type="text" name="telefone" value="{{ $client->telefone }}" required />
                 </div>
@@ -89,16 +74,6 @@
                 <div>
                     <x-label class="text-white" for="observacao" :value="__('Observação *')" />
                     <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" value="{{ $client->observacao }}" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="descricao" :value="__('Descrição *')" />
-                    <x-input id="descricao" class="mt-1 w-full" type="text" name="descricao" value="{{ $client->descricao }}" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="matriz_id" :value="__('Matriz ID *')" />
-                    <x-input id="matriz_id" class="mt-1 w-full" type="text" name="matriz_id" value="{{ $client->matriz_id }}" required />
                 </div>
             </div>
 

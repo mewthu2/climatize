@@ -41,11 +41,6 @@
                       <option value="C">C</option>
                   </select>
               </div>
-
-              <div>
-                  <x-label class="text-white" for="ip_cliente" :value="__('IP Cliente')" />
-                  <x-input id="ip_cliente" class="mt-1 w-full" type="text" name="ip_cliente" />
-              </div>
           </div>
 
           <div class="p-4 bg-gray-500 rounded-lg flex items-center justify-center mt-4">

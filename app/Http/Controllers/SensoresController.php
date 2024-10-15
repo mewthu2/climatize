@@ -11,7 +11,6 @@ class SensoresController extends Controller
     private $errorMessages = [
         'id_equipamento.required' => 'O campo ID do Equipamento é obrigatório.',
         'status.required' => 'O campo Status é obrigatório.',
-        'ip_cliente.required' => 'O campo IP Cliente é obrigatório.',
         'cad_cliente_id.exists' => 'O Cliente selecionado é inválido.',
     ];
 
@@ -20,7 +19,6 @@ class SensoresController extends Controller
         return $request->validate([
             'id_equipamento' => 'required',
             'status' => 'required',
-            'ip_cliente' => 'required',
             'cad_cliente_id' => 'nullable|exists:cad_clientes,id'
         ], $this->errorMessages);
     }
@@ -77,7 +75,6 @@ class SensoresController extends Controller
             $validatedData = $this->validate_params($request);
             $sensor = StatusSensor::findOrFail($id);
             $sensor->update($validatedData);
-
             return redirect()->route('sensors')->with('success', 'Sensor atualizado com sucesso!');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput();

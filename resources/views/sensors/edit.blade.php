@@ -42,13 +42,8 @@
                     <select id="status" name="status" class="mt-1 w-full border-gray-300 rounded-md shadow-sm" required>
                         <option value="A" {{ $sensor->status == 'A' ? 'selected' : '' }}>A</option>
                         <option value="C" {{ $sensor->status == 'C' ? 'selected' : '' }}>C</option>
-                        <option value="C" {{ $sensor->status == 'I' ? 'selected' : '' }}>I</option>
+                        <option value="I" {{ $sensor->status == 'I' ? 'selected' : '' }}>I</option>
                     </select>
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="ip_cliente" :value="__('IP Cliente')" />
-                    <x-input id="ip_cliente" class="mt-1 w-full" type="text" name="ip_cliente" value="{{ $sensor->ip_cliente }}" />
                 </div>
             </div>
 

@@ -22,17 +22,12 @@
 
                 <div>
                     <x-label class="text-white" for="cnpj" :value="__('CNPJ *')" />
-                    <x-input id="cnpj" class="mt-1 w-full" type="text" name="cnpj" :value="old('cnpj')" required />
+                    <x-input id="cnpj" class="mt-1 w-full" type="text" name="cnpj" :value="old('cnpj')" />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="inscricao_estadual" :value="__('Inscrição Estadual *')" />
-                    <x-input id="inscricao_estadual" class="mt-1 w-full" type="text" name="inscricao_estadual" :value="old('inscricao_estadual')" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="tipo" :value="__('Tipo *')" />
-                    <x-input id="tipo" class="mt-1 w-full" type="text" name="tipo" :value="old('tipo')" required />
+                    <x-label class="text-white" for="inscricao_estadual" :value="__('Inscrição Estadual')" />
+                    <x-input id="inscricao_estadual" class="mt-1 w-full" type="text" name="inscricao_estadual" :value="old('inscricao_estadual')" />
                 </div>
 
                 <div>
@@ -43,11 +38,6 @@
                 <div>
                     <x-label class="text-white" for="numero" :value="__('Número *')" />
                     <x-input id="numero" class="mt-1 w-full" type="text" name="numero" :value="old('numero')" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="complemento" :value="__('Complemento *')" />
-                    <x-input id="complemento" class="mt-1 w-full" type="text" name="complemento" :value="old('complemento')" required />
                 </div>
 
                 <div>
@@ -71,8 +61,8 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="telefone" :value="__('Telefone *')" />
-                    <x-input id="telefone" class="mt-1 w-full" type="text" name="telefone" :value="old('telefone')" required />
+                    <x-label class="text-white" for="telefone" :value="__('Telefone')" />
+                    <x-input id="telefone" class="mt-1 w-full" type="text" name="telefone" :value="old('telefone')" />
                 </div>
 
                 <div>
@@ -86,18 +76,8 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="observacao" :value="__('Observação *')" />
-                    <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" :value="old('observacao')" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="descricao" :value="__('Descrição *')" />
-                    <x-input id="descricao" class="mt-1 w-full" type="text" name="descricao" :value="old('descricao')" required />
-                </div>
-
-                <div>
-                    <x-label class="text-white" for="matriz_id" :value="__('Matriz ID *')" />
-                    <x-input id="matriz_id" class="mt-1 w-full" type="text" name="matriz_id" :value="old('matriz_id')" required />
+                    <x-label class="text-white" for="observacao" :value="__('Observação')" />
+                    <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" :value="old('observacao')" />
                 </div>
             </div>
 

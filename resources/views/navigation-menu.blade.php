@@ -14,9 +14,9 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white px-1 pt-1">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-200 px-1 pt-1">
+                    <x-nav-link class="text-white" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <i class="fa-solid fa-gauge"></i>&nbsp{{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
 

@@ -68,12 +68,12 @@
                     </div>
 
                     <div>
-                        <x-label class="text-white" for="detalhe" :value="__('Detalhe *')" />
-                        <x-input id="detalhe" class="mt-1 w-full" type="text" name="detalhe" :value="old('detalhe')" required />
+                        <x-label class="text-white" for="detalhe" :value="__('Detalhe')" />
+                        <x-input id="detalhe" class="mt-1 w-full" type="text" name="detalhe" :value="old('detalhe')" />
                     </div>       
                     <div>
-                        <x-label class="text-white" for="etiqueta_ident" :value="__('Etiqueta Ident *')" />
-                        <x-input id="etiqueta_ident" class="mt-1 w-full" type="text" name="etiqueta_ident" :value="old('etiqueta_ident')" required />
+                        <x-label class="text-white" for="etiqueta_ident" :value="__('Etiqueta de identificação')" />
+                        <x-input id="etiqueta_ident" class="mt-1 w-full" type="text" name="etiqueta_ident" :value="old('etiqueta_ident')" />
                     </div>
                 </div>
             </div>
