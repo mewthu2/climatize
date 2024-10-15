@@ -14,9 +14,7 @@ class FreezersController extends Controller
         'status_sensor_id.required' => 'O campo Status Sensor é obrigatório.',
         'nome_unidade.required' => 'O campo Nome Unidade é obrigatório.',
         'referencia.required' => 'O campo Referência é obrigatório.',
-        'detalhe.required' => 'O campo Detalhe é obrigatório.',
         'setpoint.required' => 'O campo Setpoint é obrigatório.',
-        'etiqueta_ident.required' => 'O campo Etiqueta Ident é obrigatório.',
         'limite_neg.required' => 'O campo Limite Neg é obrigatório.',
         'limite_pos.required' => 'O campo Limite Pos é obrigatório.'
     ];
@@ -28,9 +26,7 @@ class FreezersController extends Controller
             'cad_cliente_id' => 'required|exists:cad_clientes,id',
             'nome_unidade' => 'required',
             'referencia' => 'required',
-            'detalhe' => 'required',
             'setpoint' => 'required',
-            'etiqueta_ident' => 'required',
             'limite_neg' => 'required',
             'limite_pos' => 'required'
         ], $this->errorMessages);
