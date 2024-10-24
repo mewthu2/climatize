@@ -19,7 +19,7 @@
         <span class="bg-red-100 border border-red-400 text-red-700 rounded p-4 mb-4">{{ session()->get('error') }}</span>
     @endif
 
-    <section class="container mx-auto p-4" style="overflow-y: scroll;">
+    <section class="container mx-auto p-4">
         <form method="POST" action="{{ route('users.update', $user->id) }}">
             @csrf
             @method('PUT')
@@ -30,17 +30,17 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                    <x-label class="text-white" for="name" :value="__('Nome *')" />
+                    <x-label class="text-white" for="name" :value="__('Nome:')" />
                     <x-input id="name" class="mt-1 w-full" type="text" name="name" :value="old('name', $user->name)" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="email" :value="__('E-mail *')" />
+                    <x-label class="text-white" for="email" :value="__('E-mail:')" />
                     <x-input id="email" class="mt-1 w-full" type="email" name="email" :value="old('email', $user->email)" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cad_cliente_id" :value="__('Vincular Cliente *')" />
+                    <x-label class="text-white" for="cad_cliente_id" :value="__('Vincular Cliente:')" />
                     <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select">
                         <option value="" @if(is_null($user->cad_cliente_id)) selected @endif>Selecione um cliente</option>
                         @foreach($clients as $client)

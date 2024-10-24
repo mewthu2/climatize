@@ -5,7 +5,7 @@
       </h5>
   </x-slot>
 
-  <section class="container mx-auto p-4" style="overflow-y: scroll;">
+  <section class="container mx-auto p-4">
       <form method="POST" action="{{ route('sensors.store') }}">
           @csrf
 
@@ -15,7 +15,7 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
-                  <x-label class="text-white" for="cad_cliente_id" :value="__('Vincular Cliente *')" />
+                  <x-label class="text-white" for="cad_cliente_id" :value="__('Vincular Cliente:')" />
                   <select id="cad_cliente_id" name="cad_cliente_id" class="mt-1 w-full form-select" required>
                       <option value="" selected disabled>Selecione um cliente</option>
                       @foreach($clients as $client)
@@ -25,17 +25,17 @@
               </div>   
 
               <div>
-                  <x-label class="text-white" for="id_equipamento" :value="__('ID Equipamento *')" />
+                  <x-label class="text-white" for="id_equipamento" :value="__('ID Equipamento:')" />
                   <x-input id="id_equipamento" class="mt-1 w-full" type="text" name="id_equipamento" required autofocus/>
               </div>
 
               <div>
-                  <x-label class="text-white" for="mac_sensor" :value="__('Mac Sensor *')" />
+                  <x-label class="text-white" for="mac_sensor" :value="__('Mac Sensor:')" />
                   <x-input id="mac_sensor" class="mt-1 w-full" type="text" name="mac_sensor" required />
               </div>
 
               <div>
-                  <x-label class="text-white" for="status" :value="__('Status *')" />
+                  <x-label class="text-white" for="status" :value="__('Status:')" />
                   <select id="status" name="status" class="mt-1 w-full border-gray-300 rounded-md shadow-sm" required>
                       <option value="A">A</option>
                       <option value="C">C</option>

@@ -46,9 +46,9 @@
         </div>
     </form> 
 
-    <section class="container mx-auto p-2" style="overflow-y: scroll;">
-        <div class="w-full mb-8 rounded-lg shadow-lg" style="overflow-y: scroll;">
-            <div class="w-full" style="overflow-y: scroll;">
+    <section class="container mx-auto p-2">
+        <div class="w-full mb-8 rounded-lg shadow-lg">
+            <div class="w-full">
                 <table class="w-full overflow-x-auto border-collapse border border-gray-300">
                     <thead>
                         <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">

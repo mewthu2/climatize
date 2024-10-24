@@ -4,7 +4,9 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura..') }}
+        <span class="text-white">
+            {{ __('Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura..') }}
+        </span>
     </x-slot>
 
     <x-slot name="form">

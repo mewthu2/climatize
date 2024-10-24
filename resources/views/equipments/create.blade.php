@@ -5,28 +5,28 @@
         </h5>
     </x-slot>
   
-    <section class="container mx-auto p-4" style="overflow-y: scroll;">
+    <section class="container mx-auto p-4">
         <form method="POST" action="{{ route('equipments.store') }}">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                    <x-label class="text-white" for="id" :value="__('ID do equipamento *')" />
+                    <x-label class="text-white" for="id" :value="__('ID do equipamento:')" />
                     <x-input id="id" class="mt-1 w-full" type="text" name="id" autocomplete="off" required autofocus />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="nome" :value="__('Nome do equipamento *')" />
+                    <x-label class="text-white" for="nome" :value="__('Nome do equipamento:')" />
                     <x-input id="nome" class="mt-1 w-full" type="text" name="nome" :value="old('nome')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="descricao" :value="__('Descrição *')" />
+                    <x-label class="text-white" for="descricao" :value="__('Descrição:')" />
                     <x-input id="descricao" class="mt-1 w-full" type="text" name="descricao" :value="old('descricao')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="endereco" :value="__('Endereço *')" />
+                    <x-label class="text-white" for="endereco" :value="__('Endereço:')" />
                     <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" :value="old('endereco')" required />
                 </div>
             </div>

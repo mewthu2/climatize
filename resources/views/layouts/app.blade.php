@@ -29,6 +29,9 @@
                         {{ $header }}
                     </div>
                 </header>
+                <a href="https://api.whatsapp.com/send?phone=5516992375432&amp;text=" target="_blank" aria-describedby="a11y-external-message">
+                    <img src="https://cdn.shopify.com/s/files/1/0865/5205/2017/files/whatsapp_7.webp?v=1723170638" style="height:60px; position:fixed; bottom:62px; right:28px; z-index:10;" data-selector="img">
+                </a>
             @endif
 
             <!-- Page Content -->

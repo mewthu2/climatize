@@ -4,7 +4,9 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Gerencie e efetue logout de suas sessões ativas em outros navegadores e dispositivos.') }}
+        <span class="text-white">
+            {{ __('Gerencie e efetue logout de suas sessões ativas em outros navegadores e dispositivos.') }}
+        </span>
     </x-slot>
 
     <x-slot name="content">

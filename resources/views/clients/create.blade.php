@@ -5,23 +5,23 @@
         </h5>
     </x-slot>
   
-    <section class="container mx-auto p-4" style="overflow-y: scroll;">
+    <section class="container mx-auto p-4">
         <form method="POST" action="{{ route('clients.store') }}">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                    <x-label class="text-white" for="nome" :value="__('Nome *')" />
+                    <x-label class="text-white" for="nome" :value="__('Nome:')" />
                     <x-input id="nome" class="mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cpf" :value="__('CPF *')" />
+                    <x-label class="text-white" for="cpf" :value="__('CPF:')" />
                     <x-input id="cpf" class="mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cnpj" :value="__('CNPJ *')" />
+                    <x-label class="text-white" for="cnpj" :value="__('CNPJ:')" />
                     <x-input id="cnpj" class="mt-1 w-full" type="text" name="cnpj" :value="old('cnpj')" />
                 </div>
 
@@ -31,32 +31,32 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="endereco" :value="__('Endereço *')" />
+                    <x-label class="text-white" for="endereco" :value="__('Endereço:')" />
                     <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" :value="old('endereco')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="numero" :value="__('Número *')" />
+                    <x-label class="text-white" for="numero" :value="__('Número:')" />
                     <x-input id="numero" class="mt-1 w-full" type="text" name="numero" :value="old('numero')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="bairro" :value="__('Bairro *')" />
+                    <x-label class="text-white" for="bairro" :value="__('Bairro:')" />
                     <x-input id="bairro" class="mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cidade" :value="__('Cidade *')" />
+                    <x-label class="text-white" for="cidade" :value="__('Cidade:')" />
                     <x-input id="cidade" class="mt-1 w-full" type="text" name="cidade" :value="old('cidade')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="estado" :value="__('Estado *')" />
+                    <x-label class="text-white" for="estado" :value="__('Estado:')" />
                     <x-input id="estado" class="mt-1 w-full" type="text" name="estado" :value="old('estado')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="cep" :value="__('CEP *')" />
+                    <x-label class="text-white" for="cep" :value="__('CEP:')" />
                     <x-input id="cep" class="mt-1 w-full" type="text" name="cep" :value="old('cep')" required />
                 </div>
 
@@ -66,17 +66,17 @@
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="celular" :value="__('Celular *')" />
+                    <x-label class="text-white" for="celular" :value="__('Celular:')" />
                     <x-input id="celular" class="mt-1 w-full" type="text" name="celular" :value="old('celular')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="email" :value="__('Email *')" />
+                    <x-label class="text-white" for="email" :value="__('Email:')" />
                     <x-input id="email" class="mt-1 w-full" type="email" name="email" :value="old('email')" required />
                 </div>
 
                 <div>
-                    <x-label class="text-white" for="observacao" :value="__('Observação')" />
+                    <x-label class="text-white" for="observacao" :value="__('Observação:')" />
                     <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" :value="old('observacao')" />
                 </div>
             </div>
