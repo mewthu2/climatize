@@ -69,9 +69,9 @@
                                         <span class="font-medium">e</span>
                                     </x-primary-button>
 
-                                    <x-danger-button href="{{ route('users.destroy', $user->id) }}">
+                                    <x-primary-button href="{{ route('users.destroy', $user->id) }}">
                                         <span class="font-medium">x</span>
-                                    </x-danger-button>
+                                    </x-primary-button>
                                 </td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $user->id }}</td>
                                 <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $user->name }}</td>
