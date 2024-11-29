@@ -28,7 +28,10 @@ class FreezersController extends Controller
             'referencia' => 'required',
             'setpoint' => 'required',
             'limite_neg' => 'required',
-            'limite_pos' => 'required'
+            'limite_pos' => 'required',
+            
+            'etiqueta_ident' => 'nullable|string',
+            'detalhe' => 'nullable|string|max:500'
         ], $this->errorMessages);
     }
 
