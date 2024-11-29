@@ -17,7 +17,7 @@
                   disabled:opacity-50 disabled:pointer-events-none dark:white-slate-900
                   dark:border-gray-700 dark:text-dark-400 dark:focus:ring-gray-600">
                     @foreach($cad_freezers as $valor)
-                        <option value="{{ $valor->id }}">{{ $valor->etiqueta_ident }}: {{ $valor->referencia }}</option>
+                        <option value="{{ $valor->id }}">{{ $valor->etiqueta_ident }}: {{ $valor->nome_unidade }}</option>
                     @endforeach
                 </select>
             </div>
