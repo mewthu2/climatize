@@ -40,12 +40,18 @@ class FreezersController extends Controller
         try {
             $query = Freezer::query();
 
-            if ($request->has('search')) {
-                $search = $request->input('search');
-                $query->where('id_equipamento', 'like', "%{$search}%")
-                    ->orWhere('referencia', 'like', "%{$search}%")
-                    ->orWhere('detalhe', 'like', "%{$search}%")
-                    ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+            if (auth()->check() && auth()->user()->email === 'rodrigo@4climatize.com.br') {
+                $query->where('id_equipamento', '4843699');
+            } else {
+                if ($request->filled('search')) {
+                    $search = $request->input('search');
+                    $query->where(function ($subquery) use ($search) {
+                        $subquery->where('id_equipamento', 'like', "%{$search}%")
+                            ->orWhere('referencia', 'like', "%{$search}%")
+                            ->orWhere('detalhe', 'like', "%{$search}%")
+                            ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+                    });
+                }
             }
 
             $freezers = $query->get();

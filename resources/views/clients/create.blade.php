@@ -17,7 +17,7 @@
 
                 <div>
                     <x-label class="text-white" for="cpf" :value="__('CPF:')" />
-                    <x-input id="cpf" class="mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required />
+                    <x-input id="cpf" class="mt-1 w-full" type="text" name="cpf" :value="old('cpf')"  />
                 </div>
 
                 <div>
@@ -32,32 +32,32 @@
 
                 <div>
                     <x-label class="text-white" for="endereco" :value="__('Endereço:')" />
-                    <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" :value="old('endereco')" required />
+                    <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" :value="old('endereco')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="numero" :value="__('Número:')" />
-                    <x-input id="numero" class="mt-1 w-full" type="text" name="numero" :value="old('numero')" required />
+                    <x-input id="numero" class="mt-1 w-full" type="text" name="numero" :value="old('numero')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="bairro" :value="__('Bairro:')" />
-                    <x-input id="bairro" class="mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required />
+                    <x-input id="bairro" class="mt-1 w-full" type="text" name="bairro" :value="old('bairro')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="cidade" :value="__('Cidade:')" />
-                    <x-input id="cidade" class="mt-1 w-full" type="text" name="cidade" :value="old('cidade')" required />
+                    <x-input id="cidade" class="mt-1 w-full" type="text" name="cidade" :value="old('cidade')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="estado" :value="__('Estado:')" />
-                    <x-input id="estado" class="mt-1 w-full" type="text" name="estado" :value="old('estado')" required />
+                    <x-input id="estado" class="mt-1 w-full" type="text" name="estado" :value="old('estado')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="cep" :value="__('CEP:')" />
-                    <x-input id="cep" class="mt-1 w-full" type="text" name="cep" :value="old('cep')" required />
+                    <x-input id="cep" class="mt-1 w-full" type="text" name="cep" :value="old('cep')"  />
                 </div>
 
                 <div>
@@ -67,12 +67,12 @@
 
                 <div>
                     <x-label class="text-white" for="celular" :value="__('Celular:')" />
-                    <x-input id="celular" class="mt-1 w-full" type="text" name="celular" :value="old('celular')" required />
+                    <x-input id="celular" class="mt-1 w-full" type="text" name="celular" :value="old('celular')"  />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="email" :value="__('Email:')" />
-                    <x-input id="email" class="mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                    <x-input id="email" class="mt-1 w-full" type="email" name="email" :value="old('email')" required/>
                 </div>
 
                 <div>

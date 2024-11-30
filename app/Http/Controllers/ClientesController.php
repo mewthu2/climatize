@@ -9,37 +9,17 @@ class ClientesController extends Controller
 {
     private $errorMessages = [
         'nome.required' => 'O campo Nome é obrigatório.',
-        'cpf.required' => 'O campo CPF é obrigatório.',
-        'cnpj.required' => 'O campo CNPJ é obrigatório.',
-        'endereco.required' => 'O campo Endereço é obrigatório.',
-        'numero.required' => 'O campo Número é obrigatório.',
-        'complemento.required' => 'O campo Complemento é obrigatório.',
-        'bairro.required' => 'O campo Bairro é obrigatório.',
-        'cidade.required' => 'O campo Cidade é obrigatório.',
-        'estado.required' => 'O campo Estado é obrigatório.',
-        'telefone.required' => 'O campo Telefone é obrigatório.',
-        'celular.required' => 'O campo Celular é obrigatório.',
         'email.required' => 'O campo Email é obrigatório.',
         'email.email' => 'O campo Email deve ser um email válido.',
     ];
-
+    
     private function validate_params(Request $request)
     {
         return $request->validate([
             'nome' => 'required',
-            'cpf' => 'required',
-            'cnpj' => 'required',
-            'endereco' => 'required',
-            'numero' => 'required',
-            'complemento' => 'required',
-            'bairro' => 'required',
-            'cidade' => 'required',
-            'estado' => 'required',
-            'telefone' => 'required',
-            'celular' => 'required',
             'email' => 'required|email',
         ], $this->errorMessages);
-    }
+    }    
 
     public function index(Request $request)
     {

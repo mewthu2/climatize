@@ -22,6 +22,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-5 sm:flex text-gray-200 items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out">
                     <x-dropdown >
+                        
                         <x-slot name="trigger">
                             <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-white cursor-pointer">Administração <i class="fas fa-sort-down ml-2"></i></span> 
                         </x-slot>
@@ -33,9 +34,11 @@
 
                             <div class="border-t border-gray-200"></div>
 
-                            <x-dropdown-link href="{{ route('users') }}">
-                                {{ __('Usuários') }}
-                            </x-dropdown-link>
+                            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                                <x-dropdown-link href="{{ route('users') }}">
+                                    {{ __('Usuários') }}
+                                </x-dropdown-link>
+                            @endif
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -61,9 +64,11 @@
                                 {{ __('Freezers') }}
                             </x-dropdown-link>
 
-                            <x-dropdown-link href="{{ route('clients') }}">
-                                {{ __('Clientes') }}
-                            </x-dropdown-link>
+                            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                                <x-dropdown-link href="{{ route('clients') }}">
+                                    {{ __('Clientes') }}
+                                </x-dropdown-link>
+                            @endif
 
                             {{-- <x-dropdown-link href="{{ route('contatos') }}">
                                 {{ __('Contatos') }}
@@ -249,9 +254,11 @@
 
             <div class="border-t border-gray-500"></div>
 
-            <x-responsive-nav-link>
-                <span class="text-gray-500">Administração <i class="fas fa-tasks"></i></span> 
-            </x-responsive-nav-link>
+            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                <x-responsive-nav-link>
+                    <span class="text-gray-500">Administração <i class="fas fa-tasks"></i></span> 
+                </x-responsive-nav-link>
+            @endif
 
             <div class="border-t border-gray-500"></div>
 
@@ -279,9 +286,11 @@
                 {{ __('Freezers') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
-                {{ __('Clientes') }}
-            </x-responsive-nav-link>
+            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                <x-responsive-nav-link href="{{ route('clients') }}" :active="request()->routeIs('clients')">
+                    {{ __('Clientes') }}
+                </x-responsive-nav-link>
+            @endif
 
             <div class="border-t border-gray-500"></div>
 

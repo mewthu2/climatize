@@ -18,52 +18,52 @@
 
                 <div>
                     <x-label class="text-white" for="cpf" :value="__('CPF:')" />
-                    <x-input id="cpf" class="mt-1 w-full" type="text" name="cpf" value="{{ $client->cpf }}" required />
+                    <x-input id="cpf" class="mt-1 w-full" type="text" name="cpf" value="{{ $client->cpf }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="cnpj" :value="__('CNPJ:')" />
-                    <x-input id="cnpj" class="mt-1 w-full" type="text" name="cnpj" value="{{ $client->cnpj }}" required />
+                    <x-input id="cnpj" class="mt-1 w-full" type="text" name="cnpj" value="{{ $client->cnpj }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="endereco" :value="__('Endereço:')" />
-                    <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" value="{{ $client->endereco }}" required />
+                    <x-input id="endereco" class="mt-1 w-full" type="text" name="endereco" value="{{ $client->endereco }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="numero" :value="__('Número:')" />
-                    <x-input id="numero" class="mt-1 w-full" type="text" name="numero" value="{{ $client->numero }}" required />
+                    <x-input id="numero" class="mt-1 w-full" type="text" name="numero" value="{{ $client->numero }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="complemento" :value="__('Complemento:')" />
-                    <x-input id="complemento" class="mt-1 w-full" type="text" name="complemento" value="{{ $client->complemento }}" required />
+                    <x-input id="complemento" class="mt-1 w-full" type="text" name="complemento" value="{{ $client->complemento }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="bairro" :value="__('Bairro:')" />
-                    <x-input id="bairro" class="mt-1 w-full" type="text" name="bairro" value="{{ $client->bairro }}" required />
+                    <x-input id="bairro" class="mt-1 w-full" type="text" name="bairro" value="{{ $client->bairro }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="cidade" :value="__('Cidade:')" />
-                    <x-input id="cidade" class="mt-1 w-full" type="text" name="cidade" value="{{ $client->cidade }}" required />
+                    <x-input id="cidade" class="mt-1 w-full" type="text" name="cidade" value="{{ $client->cidade }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="estado" :value="__('Estado:')" />
-                    <x-input id="estado" class="mt-1 w-full" type="text" name="estado" value="{{ $client->estado }}" required />
+                    <x-input id="estado" class="mt-1 w-full" type="text" name="estado" value="{{ $client->estado }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="telefone" :value="__('Telefone:')" />
-                    <x-input id="telefone" class="mt-1 w-full" type="text" name="telefone" value="{{ $client->telefone }}" required />
+                    <x-input id="telefone" class="mt-1 w-full" type="text" name="telefone" value="{{ $client->telefone }}" />
                 </div>
 
                 <div>
                     <x-label class="text-white" for="celular" :value="__('Celular:')" />
-                    <x-input id="celular" class="mt-1 w-full" type="text" name="celular" value="{{ $client->celular }}" required />
+                    <x-input id="celular" class="mt-1 w-full" type="text" name="celular" value="{{ $client->celular }}" />
                 </div>
 
                 <div>
@@ -73,7 +73,7 @@
 
                 <div>
                     <x-label class="text-white" for="observacao" :value="__('Observação:')" />
-                    <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" value="{{ $client->observacao }}" required />
+                    <x-input id="observacao" class="mt-1 w-full" type="text" name="observacao" value="{{ $client->observacao }}" />
                 </div>
             </div>
 
