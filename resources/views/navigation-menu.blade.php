@@ -56,9 +56,11 @@
 
                             <div class="border-t border-gray-200"></div>
 
-                            <x-dropdown-link href="{{ route('equipments') }}">
-                                {{ __('Equipamentos') }}
-                            </x-dropdown-link>
+                            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                                <x-dropdown-link href="{{ route('equipments') }}">
+                                    {{ __('Equipamentos') }}
+                                </x-dropdown-link>
+                            @endif
 
                             <x-dropdown-link href="{{ route('freezers') }}">
                                 {{ __('Freezers') }}
@@ -278,9 +280,11 @@
 
             <div class="border-t border-gray-500"></div>
 
-            <x-responsive-nav-link href="{{ route('equipments') }}" :active="request()->routeIs('equipments')">
-                {{ __('Equipamentos') }}
-            </x-responsive-nav-link>
+            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
+                <x-responsive-nav-link href="{{ route('equipments') }}" :active="request()->routeIs('equipments')">
+                    {{ __('Equipamentos') }}
+                </x-responsive-nav-link>
+            @endif
 
             <x-responsive-nav-link href="{{ route('freezers') }}" :active="request()->routeIs('freezers')">
                 {{ __('Freezers') }}

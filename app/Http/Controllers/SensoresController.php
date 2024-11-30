@@ -27,14 +27,18 @@ class SensoresController extends Controller
     {
         $query = StatusSensor::query();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('id', 'like', "%{$search}%")
-                ->orWhere('id_equipamento', 'like', "%{$search}%")
-                ->orWhere('mac_sensor', 'like', "%{$search}%")
-                ->orWhere('status', 'like', "%{$search}%")
-                ->orWhere('ip_cliente', 'like', "%{$search}%")
-                ->orWhere('offset', 'like', "%{$search}%");
+        if (auth()->check() && auth()->user()->email === 'rodrigo@4climatize.com.br') {
+            $query->where('cad_cliente_id', '3');
+        } else {
+            if ($request->has('search')) {
+                $search = $request->input('search');
+                $query->where('id', 'like', "%{$search}%")
+                    ->orWhere('id_equipamento', 'like', "%{$search}%")
+                    ->orWhere('mac_sensor', 'like', "%{$search}%")
+                    ->orWhere('status', 'like', "%{$search}%")
+                    ->orWhere('ip_cliente', 'like', "%{$search}%")
+                    ->orWhere('offset', 'like', "%{$search}%");
+            }
         }
 
         $sensors = $query->get();

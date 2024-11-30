@@ -41,7 +41,7 @@ class FreezersController extends Controller
             $query = Freezer::query();
 
             if (auth()->check() && auth()->user()->email === 'rodrigo@4climatize.com.br') {
-                $query->where('id_equipamento', '4843699');
+                $query->where('cad_cliente_id', '3');
             } else {
                 if ($request->filled('search')) {
                     $search = $request->input('search');
