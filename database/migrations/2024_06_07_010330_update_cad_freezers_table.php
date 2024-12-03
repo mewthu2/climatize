@@ -13,9 +13,7 @@ class UpdateCadFreezersTable extends Migration
      */
     public function up()
     {
-        Schema::table('cad_freezers', function (Blueprint $table) {
-            $table->dropColumn('cad_cliente_id');
-        });
+     
     }
 
     /**

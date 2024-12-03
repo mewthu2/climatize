@@ -13,10 +13,7 @@ class AddCadClienteIdToCadFreezersTable extends Migration
      */
     public function up()
     {
-        Schema::table('cad_freezers', function (Blueprint $table) {
-            // $table->unsignedBigInteger('cad_cliente_id')->after('id');
-            $table->foreign('cad_cliente_id')->references('id')->on('cad_clientes');
-        });
+
     }
 
     /**
