@@ -17,4 +17,4 @@ use App\Http\Controllers\Api\StatusSensorController;
 
 // Rota sem autenticação para leitura de temperatura
 Route::get('/le_temperatura', [CadFreezersMastersController::class, 'le_temperatura']);
-Route::post('/t_sensor_insere', [StatusSensorController::class, 't_sensor_insere']);
+Route::get('/t_sensor_insere', [StatusSensorController::class, 't_sensor_insere']);
