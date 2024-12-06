@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CadFreezersMastersController;
+use App\Http\Controllers\Api\StatusSensorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,4 @@ use App\Http\Controllers\Api\CadFreezersMastersController;
 
 // Rota sem autenticação para leitura de temperatura
 Route::get('/le_temperatura', [CadFreezersMastersController::class, 'le_temperatura']);
+Route::post('/t_sensor_insere', [StatusSensorController::class, 't_sensor_insere']);
