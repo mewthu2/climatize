@@ -15,4 +15,4 @@ use App\Http\Controllers\Api\CadFreezersMastersController;
 */
 
 // Rota sem autenticação para leitura de temperatura
-Route::get('/le-temperatura', [CadFreezersMastersController::class, 'le_temperatura']);
+Route::get('/le_temperatura', [CadFreezersMastersController::class, 'le_temperatura']);
