@@ -31,6 +31,7 @@ class CadFreezersMaster extends Model
         'tLiga',
         'tDesliga',
         'statusEquipamento',
+        'rele',
     ];
 
     /**
