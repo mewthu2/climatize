@@ -20,10 +20,8 @@ class CadFreezersMastersController extends Controller
         $idEquipamento = $request->input('ID_EQUIPAMENTO');
 
         if (!$macSensor || !$idEquipamento) {
-            return response()->json([
-                'message' => 'Parâmetros MAC_SENSOR e ID_EQUIPAMENTO são obrigatórios.',
-                'status' => 'error',
-            ], 400);
+            return response("Parâmetros MAC_SENSOR e ID_EQUIPAMENTO são obrigatórios.|-|error|-|", 400)
+                ->header('Content-Type', 'text/plain');
         }
 
         $freezer = CadFreezersMaster::where('mac_sensor', $macSensor)
@@ -31,22 +29,17 @@ class CadFreezersMastersController extends Controller
             ->first();
 
         if ($freezer) {
-            return response()->json([
-                'tLiga' => $freezer->tLiga,
-                'tDesliga' => $freezer->tDesliga,
-                'status' => $freezer->statusEquipamento,
-                'acionador' => $freezer->acionador ?? '-',
-                'status' => 'success',
-            ]);
+            $tLiga = $freezer->tLiga ?? '-';
+            $tDesliga = $freezer->tDesliga ?? '-';
+            $status = $freezer->statusEquipamento ?? '-';
+            $acionador = $freezer->acionador ?? '-';
+
+            return response("$tLiga|$tDesliga|$status|$acionador|")
+                ->header('Content-Type', 'text/plain');
         }
 
-        return response()->json([
-            'tLiga' => '-',
-            'tDesliga' => '-',
-            'status' => '-',
-            'acionador' => '-',
-            'message' => 'Equipamento não encontrado.',
-            'status' => 'error',
-        ], 404);
+        return response("-|-|-|-|Equipamento não encontrado.|error|-|", 404)
+            ->header('Content-Type', 'text/plain');
     }
+
 }
