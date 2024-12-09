@@ -135,39 +135,4 @@ class StatusSensorController extends Controller
         echo "Alerta enviado para URL: $finalUrl\n";
     }
 
-    <?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use DB;
-
-class HistoricoController extends Controller
-{
-    public function insert_temp(Request $request)
-    {
-        $temperatura = $request->input('temperatura');  // Temperatura
-        $sensor = $request->input('sensor');            // Sensor
-        $data = Carbon::now()->format('Y/m/d');         // Data atual
-        $hora = Carbon::now()->format('H:i:s');         // Hora atual
-
-        try {
-            DB::table('t_historico')->insert([
-                'id_receita' => 1,
-                'v_temperatura' => $temperatura,
-                'id_etapa' => 1,
-                'v_data' => $data,
-                'v_hora' => $hora,
-                'v_sensor' => $sensor
-            ]);
-
-            return response()->json(['message' => 'Temperatura inserida com sucesso.'], 201);
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Erro ao inserir temperatura.', 'details' => $e->getMessage()], 500);
-        }
-    }
-}
-
 }
