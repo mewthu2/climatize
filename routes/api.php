@@ -20,4 +20,4 @@ Route::get('/le_temperatura', [CadFreezersMastersController::class, 'le_temperat
 Route::get('/t_sensor_insere', [StatusSensorController::class, 't_sensor_insere']);
 Route::get('/insert_temp_master', [StatusSensorController::class, 'insert_temp_master']);
 Route::get('/insert_telemetria', [TelemetriaEquipamentosController::class, 'insert_telemetria']);
-Route::get('/insert_temp_master', [StatusSensorController::class, 'insert_temp']);
+Route::get('/insert_temp', [StatusSensorController::class, 'insert_temp']);

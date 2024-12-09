@@ -16,11 +16,9 @@ class CadFreezersMastersController extends Controller
      */
     public function le_temperatura(Request $request)
     {
-        // Recupera os parâmetros da requisição
         $macSensor = $request->input('MAC_SENSOR');
         $idEquipamento = $request->input('ID_EQUIPAMENTO');
 
-        // Validação dos parâmetros
         if (!$macSensor || !$idEquipamento) {
             return response()->json([
                 'message' => 'Parâmetros MAC_SENSOR e ID_EQUIPAMENTO são obrigatórios.',
@@ -28,7 +26,6 @@ class CadFreezersMastersController extends Controller
             ], 400);
         }
 
-        // Consulta ao banco de dados usando Eloquent
         $freezer = CadFreezersMaster::where('mac_sensor', $macSensor)
             ->where('id_equipamento', $idEquipamento)
             ->first();
