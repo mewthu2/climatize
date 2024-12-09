@@ -33,8 +33,9 @@ class CadFreezersMastersController extends Controller
             $tDesliga = $freezer->tDesliga ?? '-';
             $status = $freezer->statusEquipamento ?? '-';
             $acionador = $freezer->acionador ?? '-';
+            $rele = $freezer->rele ?? '-';
 
-            return response("$tLiga|$tDesliga|$status|$acionador|")
+            return response("$tLiga|$tDesliga|$status|$acionador|$rele")
                 ->header('Content-Type', 'text/plain');
         }
 
