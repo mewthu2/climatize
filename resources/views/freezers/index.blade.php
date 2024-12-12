@@ -55,8 +55,6 @@
                     <thead>
                         <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                             <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
-                            <th class="px-6 py-3 border border-gray-300">Equipamento</th>
-                            <th class="px-6 py-3 border border-gray-300">Sensor</th>
                             <th class="px-6 py-3 border border-gray-300">Min/Set/Max</th>
                             <th class="px-6 py-3 border border-gray-300">Nome Unidade</th>
                             <th class="px-6 py-3 border border-gray-300">Referência</th>
@@ -69,17 +67,13 @@
                         @foreach ($freezers as $freezer)
                         <tr>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
-                                @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
-                                    <x-primary-button href="{{ route('freezers.edit', $freezer->id) }}">
-                                        <span class="font-medium">e</span>
-                                    </x-primary-button>                                  
-                                    <x-primary-button href="{{ route('freezers.destroy', $freezer->id) }}">
-                                        <span class="font-medium">x</span>
-                                    </x-primary-button>
-                                @endif
+                                <x-primary-button href="{{ route('freezers.edit', $freezer->id) }}">
+                                    <span class="font-medium">e</span>
+                                </x-primary-button>                                  
+                                <x-primary-button href="{{ route('freezers.destroy', $freezer->id) }}">
+                                    <span class="font-medium">x</span>
+                                </x-primary-button>
                             </td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->statusSensor()->first()->id_equipamento }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->statusSensor()->first()->mac_sensor }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border text-center border-gray-300">{{ $freezer->limite_neg }}, {{ $freezer->setpoint }}, {{ $freezer->limite_pos }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->nome_unidade }}</td>
                             <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $freezer->referencia }}</td>
