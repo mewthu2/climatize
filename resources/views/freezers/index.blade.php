@@ -2,11 +2,9 @@
     <x-slot name="header">
         <h5 class="text-left font-semibold text-sm text-white leading-tight">
             <i class="fas fa-users"></i> {{ __('Listagem de Freezers') }}
-            @if (auth()->user()->email != 'rodrigo@4climatize.com.br')
-                <x-primary-button class="ml-4" href="{{ route('freezers.create') }}">
-                    <i class="fas fa-plus"></i> {{ __('Novo') }}
-                </x-primary-button>
-            @endif
+            <x-primary-button class="ml-4" href="{{ route('freezers.create') }}">
+                <i class="fas fa-plus"></i> {{ __('Novo') }}
+            </x-primary-button>
 
             @if(session()->has('success'))
                 <span 
