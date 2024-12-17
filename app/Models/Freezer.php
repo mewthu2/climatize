@@ -31,6 +31,11 @@ class Freezer extends Model
         return $this->belongsTo(StatusSensor::class, 'status_sensor_id');
     }
 
+    public function cliente()
+    {
+        return $this->belongsTo(ClienteNovo::class, 'cad_cliente_id');
+    }
+
     protected static function boot()
     {
         parent::boot();
