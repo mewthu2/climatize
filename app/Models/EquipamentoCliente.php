@@ -24,6 +24,7 @@ class EquipamentoCliente extends Model
     protected $fillable = [
         'id_equipamento',
         'cad_cliente_id',
+        'status',
     ];
 
     /**

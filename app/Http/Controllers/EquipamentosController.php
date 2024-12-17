@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipamento;
+use App\Models\EquipamentoCliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
@@ -29,7 +29,7 @@ class EquipamentosController extends Controller
 
     public function index()
     {
-        $equipments = Equipamento::all();
+        $equipments = EquipamentoCliente::all();
         return View::make('equipments.index', compact('equipments'));
     }
 
