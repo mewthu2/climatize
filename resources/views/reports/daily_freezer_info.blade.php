@@ -124,7 +124,7 @@
                 .then(function (response) {
                     toggleElementVisibility('loading_status', false);
                     toggleElementVisibility('done_status', true);
-                    console.log(response);
+
                     setTimeout(function() {
                         toggleElementVisibility('done_status', false);
                         toggleElementVisibility('chart', true);
@@ -241,7 +241,7 @@
             },
             y: {
                 formatter: function(value) {
-                    return value + ' °C';
+                    return value.toFixed(2) + ' °C';
                 },
                 title: {
                     formatter: function () {
