@@ -29,6 +29,7 @@ class ReportsController extends Controller
             if ($sensor) {
                 $logs = DatalogSensorSlave::where('mac_sensor', $sensor->mac_sensor)
                     ->whereBetween('dt_leitura', [$start_date, $end_date])
+                    ->whereNotNull('temperatura')
                     ->get()
                     ->groupBy('mac_sensor');
 

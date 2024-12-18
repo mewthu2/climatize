@@ -124,7 +124,7 @@
                 .then(function (response) {
                     toggleElementVisibility('loading_status', false);
                     toggleElementVisibility('done_status', true);
-
+                    console.log(response);
                     setTimeout(function() {
                         toggleElementVisibility('done_status', false);
                         toggleElementVisibility('chart', true);
@@ -152,7 +152,7 @@
                     data: sensorData.map(function (item) {
                         return {
                             x: new Date(item.dt_leitura),
-                            y: parseFloat(item.temperatura)
+                            y: parseFloat(item.temperatura.toFixed(2))
                         };
                     }),
                     color: colors[colorIndex % colors.length]
