@@ -39,9 +39,9 @@
             </div>
         </div>
 
-        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg"> 
+        <div class="px-4 grid grid-cols-4 mt-2 mr-4 ml-4 p-1 gap-1 bg-gray-600 rounded-lg" style="overflow-x: scroll;"> 
             <div id="chart" class="col-span-4 mt-4"></div>
-        </div>
+        </div>        
         
         <div class="px-4 py-4 grid grid-cols-3 gap-2">
             <div id="loading_status" role="status">

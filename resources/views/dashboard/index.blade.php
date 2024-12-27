@@ -6,7 +6,7 @@
     </x-slot>
     <section class="container mx-auto py-2 px-2 rounded-lg grid lg:grid-cols-6 gap-1 sm:grid-cols-1">
         @foreach($freezers as $freezer)
-            <div class="mb-2 mx-auto sm:px-2 lg:px-2">
+            <div class="mb-2">
                 <div class="p-2 border rounded-t-xl border-gray-600 bg-gray-600">
                     <div class="grid grid-cols-1">
                       
