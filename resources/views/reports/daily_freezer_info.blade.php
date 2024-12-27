@@ -167,8 +167,8 @@
         chart: {
             type: 'line',
             stacked: false,
-            width: window.innerWidth > 768 ? 1170 : 370,
-            height: window.innerWidth > 768 ? 500 : 400,
+            width: 1170,
+            height: 500,
             zoom: {
                 type: 'x',
                 enabled: true,
