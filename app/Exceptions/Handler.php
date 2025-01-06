@@ -33,6 +33,10 @@ class Handler extends ExceptionHandler
             return redirect()->route('login')->with('error', 'Sua sessão expirou. Faça login novamente.');
         }
 
+        if ($exception->getStatusCode() === 500) {
+            return redirect()->route('login');
+        }
+
         return parent::render($request, $exception);
     }
 }
