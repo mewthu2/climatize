@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,14 +30,18 @@ class Handler extends ExceptionHandler
     }
     public function render($request, Throwable $exception)
     {
-        if ($exception->getStatusCode() === 419) {
-            return redirect()->route('login')->with('error', 'Sua sessão expirou. Faça login novamente.');
-        }
-
-        if ($exception->getStatusCode() === 500) {
+        if (method_exists($exception, 'getStatusCode')) {
+            if ($exception->getStatusCode() === 419) {
+                return redirect()->route('login')->with('error', 'Sua sessão expirou. Faça login novamente.');
+            }
+    
+            if ($exception->getStatusCode() === 500) {
+                return redirect()->route('login');
+            }
+        } else {
             return redirect()->route('login');
         }
-
+    
         return parent::render($request, $exception);
     }
 }
