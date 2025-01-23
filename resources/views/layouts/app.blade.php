@@ -8,15 +8,13 @@
         <title>{{ config('app.name', '4Climatize - Web') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
 
         <!-- Styles -->
-        @livewireStyles
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
     </head>
     <body class="font-roboto antialiased">
         <x-banner />
