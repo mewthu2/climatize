@@ -35,9 +35,25 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        try {
+            $query = User::query();
+
+            if ($request->has('search') && !empty($request->input('search'))) {
+                $search = $request->input('search');
+
+                $query->where(function ($subquery) use ($search) {
+                    $subquery->where('name', 'like', "%{$search}%")
+                            ->orWhere('email', 'like', "%{$search}%");
+                });
+            }
+
+            $users = $query->get();
+            return view('users.index', ['users' => $users]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Erro ao listar os usuários: ' . $e->getMessage());
+        }
     }
+
 
     public function create()
     {

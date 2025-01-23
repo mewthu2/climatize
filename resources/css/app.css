@@ -7,3 +7,16 @@
 [x-cloak] {
     display: none;
 }
+
+.slot-style {
+    padding-left: 0;
+    padding-top: 0;
+    padding-top: 4em;
+  }
+  
+  @media (min-width: 1024px) {
+    .slot-style {
+      padding-left: 16em;
+    }
+  }
+  

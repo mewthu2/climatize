@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: climatize_app
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:9000"

@@ -92,10 +92,14 @@ class FreezersController extends Controller
         try {
             $all_clients = ClienteNovo::all();
             $status_sensors = StatusSensor::whereDoesntHave('freezer')
-                                          ->where('status', '!=', 'I')
-                                          ->where('status', '!=', 'A')
-                                          ->get();
+                                        ->where('status', '!=', 'I')
+                                        ->where('status', '!=', 'A')
+                                        ->get();
             $freezer = Freezer::findOrFail($id);
+
+            if (request()->ajax()) {
+                return view('freezers._form', compact('freezer', 'all_clients', 'status_sensors'));
+            }
 
             return view('freezers.edit', compact('freezer', 'all_clients', 'status_sensors'));
         } catch (\Exception $e) {
