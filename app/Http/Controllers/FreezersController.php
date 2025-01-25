@@ -40,18 +40,16 @@ class FreezersController extends Controller
         try {
             $query = Freezer::query()->where('cad_cliente_id', auth()->user()->cad_cliente_id);;
 
-            if ($request->filled('search')) {
+            if ($request->has('search') && !empty($request->input('search'))) {
                 $search = $request->input('search');
+
                 $query->where(function ($subquery) use ($search) {
-                    $subquery->where('id_equipamento', 'like', "%{$search}%")
-                        ->orWhere('referencia', 'like', "%{$search}%")
-                        ->orWhere('detalhe', 'like', "%{$search}%")
-                        ->orWhere('etiqueta_ident', 'like', "%{$search}%");
+                    $subquery->where('id_equipamento', 'like', "%{$search}%");
                 });
             }
 
             $freezers = $query->get();
-            
+
             return view('freezers.index', ['freezers' => $freezers]);
         } catch (\Exception $e) {
             return back()->with('error', 'Erro ao listar os freezers: ' . $e->getMessage());

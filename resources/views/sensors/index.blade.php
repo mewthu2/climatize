@@ -36,55 +36,50 @@
         </h5>
     </x-slot>
 
-    <form method="GET" action="{{ route('sensors') }}" class="mx-auto container items-center">
-        <div class="text-right p-2">
-            <input type="text" name="search" class="form-input rounded-md shadow-sm w-full"
-                   placeholder="Buscar sensores..." value="{{ request('search') }}">
-            <x-primary-button type="submit" class="mt-2 w-full">
-                {{ __('Pesquisar') }}
-            </x-primary-button>
-        </div>
-    </form>   
-
-    <section class="container mx-auto p-2">     
-        <div class="w-full mb-8 rounded-lg shadow-lg">
-            <div class="w-full">
-                <table class="w-full overflow-x-auto border-collapse border border-gray-300">
-                    <thead>
-                        <tr class="text-sm font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                            <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
-                            <th class="px-6 py-3 border border-gray-300">ID</th>
-                            <th class="px-6 py-3 border border-gray-300">Cliente</th>
-                            <th class="px-6 py-3 border border-gray-300">ID Equipamento</th>
-                            <th class="px-6 py-3 border border-gray-300">Mac Sensor</th>
-                            <th class="px-6 py-3 border border-gray-300">Status</th>
-                            <th class="px-6 py-3 border border-gray-300">IP Cliente</th>
-                            <th class="px-6 py-3 border border-gray-300">Criado em</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($sensors as $sensor)
-                        <tr>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">
-                                <x-primary-button href="{{ route('sensors.edit', $sensor->id) }}">
-                                    <span class="font-medium">e</span>
-                                </x-primary-button>
-                                <x-primary-button href="{{ route('sensors.destroy', $sensor->id) }}">
-                                    <span class="font-medium">x</span>
-                                </x-primary-button>
-                            </td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->id }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->cliente->nome ?? 'N/A' }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300 text-center">{{ $sensor->id_equipamento }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->mac_sensor }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300 text-center">{{ $sensor->status }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->ip_cliente }}</td>
-                            <td class="px-6 lg:whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6 border border-gray-300">{{ $sensor->created_at }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    <form method="GET" action="{{ route('sensors') }}" class="max-w-md mx-auto mb-2 mt-1">   
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
             </div>
+            <input type="search" name="search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pesquisar sensores..." />
+            <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pesquisar</button>
         </div>
-    </section>
+    </form>
+   
+    <div class="mr-4 ml-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th width="50" class="text-center"><i class="fa fa-ellipsis-v"></i></th>
+                    <th scope="col" class="px-6 py-3">ID</th>
+                    <th scope="col" class="px-6 py-3">Cliente</th>
+                    <th scope="col" class="px-6 py-3">ID Equipamento</th>
+                    <th scope="col" class="px-6 py-3">Mac Sensor</th>
+                    <th scope="col" class="px-6 py-3">Status</th>
+                    <th scope="col" class="px-6 py-3">IP Cliente</th>
+                    <th scope="col" class="px-6 py-3">Criado em</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach ($sensors as $sensor)
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-4 flex">
+                            <a href="{{ route('sensors.edit', $sensor->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                            <a href="{{ route('sensors.destroy', $sensor->id) }}" class="font-medium text-red-600 dark:text-red-500 hover:underline ml-2">Excluir</a>
+                        </td>
+                        <td class="px-6 py-4">{{ $sensor->id }}</td>
+                        <td class="px-6 py-4">{{ $sensor->cliente->nome ?? 'N/A' }}</td>
+                        <td class="px-6 py-4">{{ $sensor->id_equipamento }}</td>
+                        <td class="px-6 py-4">{{ $sensor->mac_sensor }}</td>
+                        <td class="px-6 py-4">{{ $sensor->status }}</td>
+                        <td class="px-6 py-4">{{ $sensor->ip_cliente }}</td>
+                        <td class="px-6 py-4">{{ $sensor->created_at }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </x-app-layout>
